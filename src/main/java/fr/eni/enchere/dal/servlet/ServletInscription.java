@@ -34,9 +34,9 @@ public class ServletInscription extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	
-		
-		String mdp = request.getParameter("mdp");
-		String mdpConfirm = request.getParameter("confirmationMotDePasse");
+		//TODO check that passwords match
+		//String mdp = request.getParameter("mdp");
+		//String mdpConfirm = request.getParameter("confirmationMotDePasse");
 		
 		Utilisateur user = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
 				request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"),

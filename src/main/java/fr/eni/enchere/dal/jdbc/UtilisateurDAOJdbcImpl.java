@@ -67,13 +67,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 	public void createUser(Utilisateur user) {
 
-		// user = new
-		// Utilisateur("pseudo","nom","prenom","mail","tel","rue","codePostal","ville","mdp",0,0);
-
-		System.out.println(user.toString());
-
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(INSERT_USER)) {
+			PreparedStatement pstmt = con.prepareStatement(INSERT_USER)) {
 			pstmt.setString(1, user.getPseudo());
 			pstmt.setString(2, user.getNom());
 			pstmt.setString(3, user.getPrenom());
