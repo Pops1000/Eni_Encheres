@@ -36,7 +36,7 @@ public class ServletSeConnecter extends HttpServlet {
 		
 		try {
 			UtilisateurManager.getInstance().seConnecter(login, password);
-			response.sendRedirect("https://www.google.com");
+			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);

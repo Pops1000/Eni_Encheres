@@ -5,6 +5,7 @@ import fr.eni.enchere.bo.Utilisateur;
 public interface UtilisateurDAO   {
 	public Utilisateur getUtilisateurByPseudo(String pseudo);
 	public Utilisateur getUtilisateurByEmail(String email);
+	public void createUser(Utilisateur user);
 	
 
 }

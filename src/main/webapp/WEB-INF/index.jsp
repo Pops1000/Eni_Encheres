@@ -44,14 +44,14 @@
 		<div class="row gx-5">
 		    <div class="col ">
 		
-    	<form action="UtilisateurServlet" method="POST">
+    	<form action="UtilisateurServlet" method="GET">
         	<button type="submit" class="btn btn-success">Se connecter</button>
     	</form>
     	</div>
     	<div class="row">
     	    <div class="col">
     	
-    	<form action="ServletInscription" method="POST">
+    	<form action="ServletInscription" method="GET">
         	<button type="submit" class="btn btn-success">S'inscrire</button>
     	</form>
     	</div>

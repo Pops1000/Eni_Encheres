@@ -2,7 +2,6 @@ package fr.eni.enchere.dal.jdbc;
 
 import java.sql.Connection;
 
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,8 +10,9 @@ import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
-	private static final String SELECT_USER_PSEUDO = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM Utilisateurs WHERE pseudo = ?  ;";
-	private static final String SELECT_USER_EMAIL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM Utilisateurs WHERE email = ?  ;";
+	private static final String SELECT_USER_PSEUDO = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE pseudo = ?  ;";
+	private static final String SELECT_USER_EMAIL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE email = ?  ;";
+	private static final String INSERT_USER = "INSERT into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 
 	@Override
 	public Utilisateur getUtilisateurByPseudo(String pseudo) {
@@ -34,14 +34,17 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	public Utilisateur setUtilisateurInfo(ResultSet rs) throws SQLException {
+		// prends les infos du resultSet de la BDD et set les informations dans l'objet
+		// utilisateur
 
 		Utilisateur user = new Utilisateur(rs.getInt("no_utilisateur"), rs.getString("pseudo"), rs.getString("nom"),
 				rs.getString("prenom"), rs.getString("email"), rs.getString("telephone"), rs.getString("rue"),
 				rs.getString("code_postal"), rs.getString("ville"), rs.getString("mot_de_passe"), rs.getInt("credit"),
-				rs.getBoolean("administrateur"));
+				rs.getInt("administrateur"));
 
 		return user;
 	}
+
 //TODO : factorisez le code :D
 	@Override
 	public Utilisateur getUtilisateurByEmail(String email) {
@@ -60,5 +63,34 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 		return user;
 
+	}
+
+	public void createUser(Utilisateur user) {
+
+		// user = new
+		// Utilisateur("pseudo","nom","prenom","mail","tel","rue","codePostal","ville","mdp",0,0);
+
+		System.out.println(user.toString());
+
+		try (Connection con = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(INSERT_USER)) {
+			pstmt.setString(1, user.getPseudo());
+			pstmt.setString(2, user.getNom());
+			pstmt.setString(3, user.getPrenom());
+			pstmt.setString(4, user.getEmail());
+			pstmt.setString(5, user.getTel());
+			pstmt.setString(6, user.getRue());
+			pstmt.setString(7, user.getCodePostal());
+			pstmt.setString(8, user.getVille());
+			pstmt.setString(9, user.getMdp());
+			pstmt.setInt(10, user.getCredit());
+			pstmt.setInt(11, user.getAdmin());
+
+			pstmt.executeUpdate();
+			System.out.println("User created with success");
+
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 }

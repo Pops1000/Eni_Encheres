@@ -21,6 +21,7 @@ public class UtilisateurManager {
 	}
 
 	public void seConnecter(String id, String password) throws BusinessException {
+		System.out.println(id);
 		Utilisateur utilisateur = null;
 		if (id.contains("@")) {
 			utilisateur = utilisateurDAO.getUtilisateurByEmail(id);
@@ -39,4 +40,10 @@ public class UtilisateurManager {
 		// TODO : gestion utilisateur ==null
 
 	}
+	
+	public void createUser(Utilisateur user) throws BusinessException {
+		utilisateurDAO.createUser(user);
+	}
+	
+
 }

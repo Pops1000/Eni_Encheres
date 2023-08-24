@@ -5,12 +5,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <title>Login</title>
 </head>
 <body>
 	 <div class="container">
         <h2>Connexion</h2>
-        <form action="traitement_connexion.jsp" method="POST">
+        <form action="UtilisateurServlet" method="POST">
         <c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
 				<strong>ERREUR !</strong>
@@ -23,7 +24,7 @@
 		</c:if>
             <div class="mb-3">
                 <label for="username" class="form-label">Nom d'utilisateur</label>
-                <input type="text" class="form-control" id="username" name="username" required>
+                <input type="text" class="form-control" id="username" name="id" required>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Mot de passe</label>

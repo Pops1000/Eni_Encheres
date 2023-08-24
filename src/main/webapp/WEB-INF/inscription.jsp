@@ -12,7 +12,7 @@
 <body>
     <div class="container">
         <h2>Inscription</h2>
-        <form action="traitement_inscription.jsp" method="POST">
+        <form action="ServletInscription" method="POST">
             <div class="mb-3">
                 <label for="pseudo" class="form-label">Pseudo</label>
                 <input type="text" class="form-control" id="pseudo" name="pseudo" required>
@@ -30,8 +30,8 @@
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
-                <label for="telephone" class="form-label">Téléphone</label>
-                <input type="tel" class="form-control" id="telephone" name="telephone">
+                <label for="tel" class="form-label">Téléphone</label>
+                <input type="tel" class="form-control" id="tel" name="tel">
             </div>
             <div class="mb-3">
                 <label for="rue" class="form-label">Rue</label>
@@ -46,8 +46,8 @@
                 <input type="text" class="form-control" id="ville" name="ville">
             </div>
             <div class="mb-3">
-                <label for="motDePasse" class="form-label">Mot de passe</label>
-                <input type="password" class="form-control" id="motDePasse" name="motDePasse" required>
+                <label for="mdp" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="mdp" name="mdp" required>
             </div>
             <div class="mb-3">
                 <label for="confirmationMotDePasse" class="form-label">Confirmer le mot de passe</label>

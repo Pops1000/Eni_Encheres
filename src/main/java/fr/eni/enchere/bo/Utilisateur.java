@@ -12,7 +12,7 @@ public class Utilisateur {
 	private String ville;
 	private String mdp;
 	private int credit;
-	private boolean admin;
+	private int admin;
 
 	public int getNo_utilisateur() {
 		return no_utilisateur;
@@ -103,15 +103,20 @@ public class Utilisateur {
 	}
 
 	public boolean isAdmin() {
+		return admin == 1 ;
+	}
+	
+
+	public int getAdmin() {
 		return admin;
 	}
 
-	public void setAdmin(boolean admin) {
+	public void setAdmin(int admin) {
 		this.admin = admin;
 	}
 
 	public Utilisateur(int no_utilisateur, String pseudo, String nom, String prenom, String email, String tel,
-			String rue, String codePostal, String ville, String mdp, int credit, boolean admin) {
+			String rue, String codePostal, String ville, String mdp, int credit, int admin) {
 		super();
 		this.no_utilisateur = no_utilisateur;
 		this.pseudo = pseudo;
@@ -128,7 +133,7 @@ public class Utilisateur {
 	}
 
 	public Utilisateur(String pseudo, String nom, String prenom, String email, String tel, String rue,
-			String codePostal, String ville, String mdp, int credit, boolean admin) {
+			String codePostal, String ville, String mdp, int credit, int admin) {
 		super();
 		this.pseudo = pseudo;
 		this.nom = nom;
@@ -145,6 +150,13 @@ public class Utilisateur {
 
 	public Utilisateur() {
 		super();
+	}
+
+	@Override
+	public String toString() {
+		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+				+ prenom + ", email=" + email + ", tel=" + tel + ", rue=" + rue + ", codePostal=" + codePostal
+				+ ", ville=" + ville + ", mdp=" + mdp + ", credit=" + credit + ", admin=" + admin + "]";
 	}
 
 	
