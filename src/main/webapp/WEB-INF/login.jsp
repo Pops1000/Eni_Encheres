@@ -8,8 +8,10 @@
 <title>Login</title>
 </head>
 <body>
-	<form action="UtilisateurServlet" method="POST">
-		<c:if test="${!empty listeCodesErreur}">
+	 <div class="container">
+        <h2>Connexion</h2>
+        <form action="traitement_connexion.jsp" method="POST">
+        <c:if test="${!empty listeCodesErreur}">
 			<div class="alert alert-danger" role="alert">
 				<strong>ERREUR !</strong>
 				<ul>
@@ -19,8 +21,22 @@
 				</ul>
 			</div>
 		</c:if>
-		<input type="text" name="id"> <input type="password"
-			name="password"> <input type="submit" value="Se connecter">
-	</form>
+            <div class="mb-3">
+                <label for="username" class="form-label">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="rememberMe" name="rememberMe">
+                <label class="form-check-label" for="rememberMe">Se souvenir de moi</label>
+            </div>
+            <button type="submit" class="btn btn-success">Se connecter</button>
+        </form>
+    </div>
+	
+	
 </body>
 </html>
