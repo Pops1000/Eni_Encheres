@@ -33,7 +33,7 @@ public class UtilisateurManager {
 			BusinessException be = new BusinessException();
 			be.ajouterErreur(CodesResultatBLL.IDENTIFIANT_KO);
 			throw be;
-			
+
 		}
 
 		// TODO : gestion utilisateur ==null
