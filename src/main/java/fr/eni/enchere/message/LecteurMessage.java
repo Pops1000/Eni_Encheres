@@ -13,7 +13,10 @@ public class LecteurMessage {
 
 	static {
 		try {
-			rb = ResourceBundle.getBundle("fr.eni.enchere.messages.messages_erreurs");
+
+
+			rb = ResourceBundle.getBundle("fr.eni.enchere.message.messages_erreurs");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

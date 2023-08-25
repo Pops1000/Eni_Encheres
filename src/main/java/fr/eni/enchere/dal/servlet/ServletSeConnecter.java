@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.UtilisateurManager;
@@ -35,8 +36,15 @@ public class ServletSeConnecter extends HttpServlet {
 		String password = request.getParameter("password");
 		
 		try {
-			UtilisateurManager.getInstance().seConnecter(login, password);
-			request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+			boolean loginSuccessful = UtilisateurManager.getInstance().seConnecter(login, password);
+			if(loginSuccessful) {
+				HttpSession session = request.getSession();
+				session.setAttribute("login", login);
+			
+				request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+				
+			}
+			
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
