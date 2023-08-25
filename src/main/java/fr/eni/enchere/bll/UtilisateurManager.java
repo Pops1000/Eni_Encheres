@@ -2,6 +2,8 @@ package fr.eni.enchere.bll;
 
 import fr.eni.enchere.BusinessException;
 
+
+
 import javax.servlet.http.HttpSession;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
@@ -23,8 +25,7 @@ public class UtilisateurManager {
 		return instance;
 	}
 
-	public boolean seConnecter(String id, String password) throws BusinessException {
-		boolean connected = true;
+	public Utilisateur seConnecter(String id, String password) throws BusinessException {
 		Utilisateur utilisateur = null;
 		if (id.contains("@")) {
 			utilisateur = utilisateurDAO.getUtilisateurByEmail(id);
@@ -35,13 +36,12 @@ public class UtilisateurManager {
 
 		if (utilisateur == null || !password.equals(utilisateur.getMdp())) {
 
-			connected = false;
 			BusinessException be = new BusinessException();
 			be.ajouterErreur(CodesResultatBLL.IDENTIFIANT_KO);
 			throw be;
 
 		}
-		return connected;
+		return utilisateur;
 
 		// TODO : gestion utilisateur ==null
 
@@ -51,8 +51,10 @@ public class UtilisateurManager {
 		utilisateurDAO.createUser(user);
 	}
 
-	public void updateUser(Utilisateur user) throws BusinessException {
+	public void updateUser(Utilisateur user,String new_pwd,String confirm_pwd) throws BusinessException {
+		if (new_pwd!=null && new_pwd == confirm_pwd) user.setMdp(new_pwd);
 		utilisateurDAO.updateUser(user);
+		
 	}
 
 	public Boolean checkPasswordMatch(String pwd, String pwd_confirm) {

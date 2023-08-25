@@ -25,7 +25,7 @@
 	</header>
 	<nav>
 		<c:choose>
-			<c:when test="${empty sessionScope.login}">
+			<c:when test="${empty sessionScope.pseudo}">
 				<form action="UtilisateurServlet" method="GET">
 					<button type="submit" class="btn btn-success">Se connecter</button>
 				</form>
@@ -35,15 +35,15 @@
 				</form>
 			</c:when>
 			<c:otherwise>
-				<h2>Bienvenue, ${sessionScope.login}!</h2>
+				<h2>Bienvenue, ${sessionScope.pseudo}!</h2>
 				<!-- Autres éléments à afficher pour un utilisateur connecté -->
-				<form action="/new_enchere.jsp" method="GET">
+				<form action="ServletCreateArticle" method="GET">
 					<button type="submit" class="btn btn-success">Enchères</button>
 				</form>
-				<form action="new_enchere.jsp" method="GET">
+				<form action="ServletCreateArticle" method="GET">
 					<button type="submit" class="btn btn-success">Vendre un article</button>
 				</form>
-				<form action="Profil.jsp" method="GET">
+				<form action="ServletMonProfil" method="GET">
 					<button type="submit" class="btn btn-success">Mon profil</button>
 				</form>
 				
