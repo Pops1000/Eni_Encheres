@@ -32,6 +32,15 @@
         <label for="no_categorie">Numéro de la catégorie:</label><br>
         <input type="number" id="no_categorie" name="noCategorie" required><br>
         
+         <label for="categorie">Sélectionnez une catégorie :</label>
+        <select id="categorie" name="categorie">
+            <option value="alimentation">Alimentation</option>
+            <option value="electronique">Électronique</option>
+            <option value="mode">Mode</option>
+            <option value="maison">Maison</option>
+            <option value="sport">Sport</option>
+        </select>
+        
         <button type="submit" class="btn btn-success">Créer</button>
     </form>
 </body>

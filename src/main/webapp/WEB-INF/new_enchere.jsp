@@ -23,8 +23,20 @@
             <textarea class="form-control" id="description" name="description" rows="3" required></textarea>
         </div>
         <div class="form-group">
-            <label for="startingPrice">Prix de départ</label>
-            <input type="number" class="form-control" id="startingPrice" name="startingPrice" step="0.01" required>
+            <label for="date_debut">date_debut</label>
+            <input type="date" class="form-control" id="date_debut" name="date_debut" required>
+        </div>
+        <div class="form-group">
+            <label for="date_fin">date_fin</label>
+            <input type="date" class="form-control" id="date_fin" name="date_fin" required>
+        </div>
+        <div class="form-group">
+            <label for="Prix de départ">Prix de départ</label>
+            <input type="number" class="form-control" id="Prix de départ" name="Prix de départ" step="0.01" required>
+        </div>
+        <div class="form-group">
+            <label for="Catégorie">Catégorie</label>
+            <input type="text" class="form-control" id="Catégorie" name="Catégorie" required>
         </div>
         <div class="form-group">
             <label for="image">Image du produit</label>
