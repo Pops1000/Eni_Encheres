@@ -10,16 +10,19 @@ import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
 public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
-	private static final String SELECT_USER_PSEUDO = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE pseudo = ?  ;";
-	private static final String SELECT_USER_EMAIL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE email = ?  ;";
+	private static final String SELECT_USER_BY_PSEUDO = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE pseudo = ?  ;";
+	private static final String SELECT_USER_BY_EMAIL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE email = ?  ;";
 	private static final String INSERT_USER = "INSERT into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-
+	private static final String UPDATE_USER = "UPDATE utilisateurs SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ? WHERE no_utilisateur = ? ";
+	private static final String DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur =?";
+	
+	
 	@Override
 	public Utilisateur getUtilisateurByPseudo(String pseudo) {
 		Utilisateur user = null;
 
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(SELECT_USER_PSEUDO)) {
+				PreparedStatement pstmt = con.prepareStatement(SELECT_USER_BY_PSEUDO)) {
 			pstmt.setString(1, pseudo);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
@@ -51,7 +54,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		Utilisateur user = null;
 
 		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(SELECT_USER_EMAIL)) {
+				PreparedStatement pstmt = con.prepareStatement(SELECT_USER_BY_EMAIL)) {
 			pstmt.setString(1, email);
 			try (ResultSet rs = pstmt.executeQuery()) {
 				if (rs.next()) {
@@ -87,5 +90,50 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+	}
+
+	@Override
+	public void updateUser(Utilisateur user) {
+		//TODO Utilisateur connected_user_id = RECUPERE ID USER CONNECTE DEPUIS SESSION COURANTE 
+		
+		try (Connection con = ConnectionProvider.getConnection();
+			PreparedStatement pstmt = con.prepareStatement(UPDATE_USER)) {
+			pstmt.setString(1, user.getPseudo());
+			pstmt.setString(2, user.getNom());
+			pstmt.setString(3, user.getPrenom());
+			pstmt.setString(4, user.getEmail());
+			pstmt.setString(5, user.getTel());
+			pstmt.setString(6, user.getRue());
+			pstmt.setString(7, user.getCodePostal());
+			pstmt.setString(8, user.getVille());
+
+			pstmt.executeUpdate();
+			System.out.println("User updated with success");
+
+		} catch (SQLException e) {
+			
+			System.out.println(e.getMessage());
+		}
+	}
+
+	@Override
+	public Boolean checkPasswordMatch(String pwd, String pwd_confirm) {
+		return pwd == pwd_confirm;
+
+	}
+
+	@Override
+	public void deleteUser(int user_id) {
+		try (Connection con = ConnectionProvider.getConnection();
+				PreparedStatement pstmt = con.prepareStatement(DELETE_USER)) {
+				pstmt.setInt(1, user_id);
+
+				pstmt.executeUpdate();
+				System.out.println("User deleted with success");
+
+			} catch (SQLException e) {
+				
+				System.out.println(e.getMessage());
+			}
 	}
 }

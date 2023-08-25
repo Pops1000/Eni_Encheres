@@ -45,5 +45,16 @@ public class UtilisateurManager {
 		utilisateurDAO.createUser(user);
 	}
 	
-
+	public void updateUser(Utilisateur user) throws BusinessException {
+		utilisateurDAO.updateUser(user);
+	}
+	
+	public Boolean checkPasswordMatch(String pwd, String pwd_confirm) {
+		return utilisateurDAO.checkPasswordMatch(pwd, pwd_confirm);
+	}
+	
+	public void deleteUser(int user_id) throws BusinessException { 
+		utilisateurDAO.deleteUser(user_id);
+	
+	}
 }
