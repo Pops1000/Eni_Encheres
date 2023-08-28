@@ -13,7 +13,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String SELECT_USER_BY_PSEUDO = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE pseudo = ?  ;";
 	private static final String SELECT_USER_BY_EMAIL = "SELECT no_utilisateur,pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit,administrateur FROM utilisateurs WHERE email = ?  ;";
 	private static final String INSERT_USER = "INSERT into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
-	private static final String UPDATE_USER = "UPDATE utilisateurs SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ? WHERE no_utilisateur = ? ";
+	private static final String UPDATE_USER = "UPDATE utilisateurs SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe =? WHERE no_utilisateur = ? ";
 	private static final String DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur =?";
 	
 	
@@ -106,6 +106,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(6, user.getRue());
 			pstmt.setString(7, user.getCodePostal());
 			pstmt.setString(8, user.getVille());
+			pstmt.setString(9, user.getMdp());
 
 			pstmt.executeUpdate();
 			System.out.println("User updated with success");
@@ -116,11 +117,11 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 		}
 	}
 
-	@Override
-	public Boolean checkPasswordMatch(String pwd, String pwd_confirm) {
-		return pwd == pwd_confirm;
-
-	}
+//	@Override
+//	public Boolean checkPasswordMatch(String pwd, String pwd_confirm) {
+//		return pwd.equals(pwd_confirm);
+//
+//	}
 
 	@Override
 	public void deleteUser(int user_id) {

@@ -7,8 +7,9 @@ public interface UtilisateurDAO   {
 	public Utilisateur getUtilisateurByEmail(String email);
 	public void createUser(Utilisateur user);
 	public void updateUser(Utilisateur user);
-	public Boolean checkPasswordMatch(String pwd, String pwd_confirm);
 	public void deleteUser(int user_idr);
+	
+//	public Boolean checkPasswordMatch(String pwd, String pwd_confirm);
 	
 
 }

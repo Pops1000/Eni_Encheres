@@ -7,11 +7,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>index</title>
 
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet"
 	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
 	crossorigin="anonymous">
-	
+
 <link rel="stylesheet" href="css/enchere.css">
 
 </head>
@@ -22,7 +23,38 @@
 		</div>
 
 	</header>
-	<nav></nav>
+	<nav>
+		<c:choose>
+			<c:when test="${empty sessionScope.pseudo}">
+				<form action="UtilisateurServlet" method="GET">
+					<button type="submit" class="btn btn-success">Se connecter</button>
+				</form>
+
+				<form action="ServletInscription" method="GET">
+					<button type="submit" class="btn btn-success">S'inscrire</button>
+				</form>
+			</c:when>
+			<c:otherwise>
+				<h2>Bienvenue, ${sessionScope.pseudo}!</h2>
+				<!-- Autres éléments à afficher pour un utilisateur connecté -->
+				<form action="ServletCreateArticle" method="GET">
+					<button type="submit" class="btn btn-success">Enchères</button>
+				</form>
+				<form action="ServletCreateArticle" method="GET">
+					<button type="submit" class="btn btn-success">Vendre un article</button>
+				</form>
+				<form action="ServletMonProfil" method="GET">
+					<button type="submit" class="btn btn-success">Mon profil</button>
+				</form>
+				
+				<form action="ServletDisconectUser" method="GET">
+					<button type="submit" class="btn btn-success">Se déconnecter</button>
+				</form>
+				
+			</c:otherwise>
+		</c:choose>
+
+	</nav>
 	<section class="container mt-5">
 		<div>
 			<p>L'association "Les objets sont nos amis" aspire à créer une
@@ -36,27 +68,10 @@
 
 		<div>
 			<p></p>
-
-		</div>
-	</section>	
-		
-	<section class="container mt-5 d-flex">
-		<div class="row gx-5">
-		    <div class="col ">
-		
-    	<form action="UtilisateurServlet" method="GET">
-        	<button type="submit" class="btn btn-success">Se connecter</button>
-    	</form>
-    	</div>
-    	<div class="row">
-    	    <div class="col">
-    	
-    	<form action="ServletInscription" method="GET">
-        	<button type="submit" class="btn btn-success">S'inscrire</button>
-    	</form>
-    	</div>
 	</section>
-		
+
+
+
 	<footer>
 		<section class="container mt-5">
 			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits réservés.</p>

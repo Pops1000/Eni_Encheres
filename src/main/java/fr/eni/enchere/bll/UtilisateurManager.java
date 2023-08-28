@@ -1,6 +1,10 @@
 package fr.eni.enchere.bll;
 
 import fr.eni.enchere.BusinessException;
+
+
+
+import javax.servlet.http.HttpSession;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
 import fr.eni.enchere.dal.UtilisateurDAO;
@@ -8,6 +12,7 @@ import fr.eni.enchere.dal.UtilisateurDAO;
 public class UtilisateurManager {
 	private UtilisateurDAO utilisateurDAO;
 	private static UtilisateurManager instance;
+
 
 	private UtilisateurManager() {
 		utilisateurDAO = DAOFactory.getUtilisateurDAO();
@@ -20,8 +25,7 @@ public class UtilisateurManager {
 		return instance;
 	}
 
-	public void seConnecter(String id, String password) throws BusinessException {
-		System.out.println(id);
+	public Utilisateur seConnecter(String id, String password) throws BusinessException {
 		Utilisateur utilisateur = null;
 		if (id.contains("@")) {
 			utilisateur = utilisateurDAO.getUtilisateurByEmail(id);
@@ -31,30 +35,41 @@ public class UtilisateurManager {
 		}
 
 		if (utilisateur == null || !password.equals(utilisateur.getMdp())) {
+
 			BusinessException be = new BusinessException();
 			be.ajouterErreur(CodesResultatBLL.IDENTIFIANT_KO);
 			throw be;
 
 		}
+		return utilisateur;
 
 		// TODO : gestion utilisateur ==null
 
 	}
-	
+
 	public void createUser(Utilisateur user) throws BusinessException {
 		utilisateurDAO.createUser(user);
 	}
-	
-	public void updateUser(Utilisateur user) throws BusinessException {
+
+	public void updateUser(Utilisateur user,String new_pwd,String confirm_pwd) throws BusinessException {
+		if (new_pwd!=null && new_pwd.equals(confirm_pwd)) user.setMdp(new_pwd);
 		utilisateurDAO.updateUser(user);
+		
 	}
-	
-	public Boolean checkPasswordMatch(String pwd, String pwd_confirm) {
-		return utilisateurDAO.checkPasswordMatch(pwd, pwd_confirm);
-	}
-	
-	public void deleteUser(int user_id) throws BusinessException { 
+
+//	public Boolean checkPasswordMatch(String pwd, String pwd_confirm) {
+//		return utilisateurDAO.checkPasswordMatch(pwd, pwd_confirm);
+//	}
+
+	public void deleteUser(int user_id) throws BusinessException {
 		utilisateurDAO.deleteUser(user_id);
-	
+
+	}
+
+	public void disconnectUser(HttpSession session) {
+		if (session != null) {
+			session.invalidate();
+		}
+
 	}
 }
