@@ -44,6 +44,7 @@ public class ServletSeConnecter extends HttpServlet {
 			Utilisateur connectedUser = UtilisateurManager.getInstance().seConnecter(login, password);
 			if(connectedUser != null) {
 				HttpSession session = request.getSession();
+				session.setAttribute("user_id", connectedUser.getNo_utilisateur());
 				session.setAttribute("pseudo", connectedUser.getPseudo());
 				session.setAttribute("nom", connectedUser.getNom());
 				session.setAttribute("prenom", connectedUser.getPrenom());
@@ -52,6 +53,7 @@ public class ServletSeConnecter extends HttpServlet {
 				session.setAttribute("rue", connectedUser.getRue());
 				session.setAttribute("codePostal", connectedUser.getCodePostal());
 				session.setAttribute("ville", connectedUser.getVille());
+				session.setAttribute("mdp", connectedUser.getMdp());
 				
 				
 			

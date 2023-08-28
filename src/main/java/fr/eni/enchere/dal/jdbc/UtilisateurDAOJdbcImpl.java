@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpServletRequest;
+
+import com.mysql.cj.Session;
+
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
@@ -15,8 +19,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String INSERT_USER = "INSERT into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private static final String UPDATE_USER = "UPDATE utilisateurs SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe =? WHERE no_utilisateur = ? ";
 	private static final String DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur =?";
-	
-	
+
 	@Override
 	public Utilisateur getUtilisateurByPseudo(String pseudo) {
 		Utilisateur user = null;
@@ -71,7 +74,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void createUser(Utilisateur user) {
 
 		try (Connection con = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(INSERT_USER)) {
+				PreparedStatement pstmt = con.prepareStatement(INSERT_USER)) {
 			pstmt.setString(1, user.getPseudo());
 			pstmt.setString(2, user.getNom());
 			pstmt.setString(3, user.getPrenom());
@@ -93,26 +96,31 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void updateUser(Utilisateur user) {
-		//TODO Utilisateur connected_user_id = RECUPERE ID USER CONNECTE DEPUIS SESSION COURANTE 
-		
+	public void updateUser(HttpServletRequest updated_infos) {
+		// TODO Utilisateur connected_user_id = RECUPERE ID USER CONNECTE DEPUIS SESSION
+		// COURANTE
+		String pwd = updated_infos.getParameter("mdp");
+		String new_pwd = updated_infos.getParameter("new_pwd");
+		String confirm_pwd = updated_infos.getParameter("confirm_pwd");
+		if (new_pwd != null && !new_pwd.isEmpty() && new_pwd.equals(confirm_pwd)) pwd = new_pwd;
 		try (Connection con = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(UPDATE_USER)) {
-			pstmt.setString(1, user.getPseudo());
-			pstmt.setString(2, user.getNom());
-			pstmt.setString(3, user.getPrenom());
-			pstmt.setString(4, user.getEmail());
-			pstmt.setString(5, user.getTel());
-			pstmt.setString(6, user.getRue());
-			pstmt.setString(7, user.getCodePostal());
-			pstmt.setString(8, user.getVille());
-			pstmt.setString(9, user.getMdp());
+				PreparedStatement pstmt = con.prepareStatement(UPDATE_USER)) {
+			pstmt.setString(1, updated_infos.getParameter("pseudo"));
+			pstmt.setString(2, updated_infos.getParameter("nom"));
+			pstmt.setString(3, updated_infos.getParameter("prenom"));
+			pstmt.setString(4, updated_infos.getParameter("email"));
+			pstmt.setString(5, updated_infos.getParameter("tel"));
+			pstmt.setString(6, updated_infos.getParameter("rue"));
+			pstmt.setString(7, updated_infos.getParameter("codePostal"));
+			pstmt.setString(8, updated_infos.getParameter("ville"));
+			pstmt.setString(9, pwd);
+			pstmt.setInt(10, (int) updated_infos.getSession().getAttribute("user_id"));
 
 			pstmt.executeUpdate();
 			System.out.println("User updated with success");
 
 		} catch (SQLException e) {
-			
+
 			System.out.println(e.getMessage());
 		}
 	}
@@ -127,14 +135,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void deleteUser(int user_id) {
 		try (Connection con = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(DELETE_USER)) {
-				pstmt.setInt(1, user_id);
+			pstmt.setInt(1, user_id);
 
-				pstmt.executeUpdate();
-				System.out.println("User deleted with success");
+			pstmt.executeUpdate();
+			System.out.println("User deleted with success");
 
-			} catch (SQLException e) {
-				
-				System.out.println(e.getMessage());
-			}
+		} catch (SQLException e) {
+
+			System.out.println(e.getMessage());
+		}
 	}
 }

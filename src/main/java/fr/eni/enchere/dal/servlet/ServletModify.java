@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.mysql.cj.Session;
+
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.UtilisateurManager;
 
@@ -30,21 +32,9 @@ public class ServletModify extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		
-	
-				
-		
-		Utilisateur user = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
-               request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"),
-              request.getParameter("rue"), request.getParameter("codePostal"), request.getParameter("ville"),
-              request.getParameter("mdp"),0, 0);
-		String new_pwd=request.getParameter("new_pwd");
-		String confirm_pwd=request.getParameter("confirm_pwd");
-		
-		
+			throws ServletException, IOException {	
 		try {
-			UtilisateurManager.getInstance().updateUser(user,new_pwd ,confirm_pwd );
+			UtilisateurManager.getInstance().updateUser(request);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

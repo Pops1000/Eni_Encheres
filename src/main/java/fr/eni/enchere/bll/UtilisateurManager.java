@@ -2,8 +2,7 @@ package fr.eni.enchere.bll;
 
 import fr.eni.enchere.BusinessException;
 
-
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
@@ -51,9 +50,8 @@ public class UtilisateurManager {
 		utilisateurDAO.createUser(user);
 	}
 
-	public void updateUser(Utilisateur user,String new_pwd,String confirm_pwd) throws BusinessException {
-		if (new_pwd!=null && new_pwd.equals(confirm_pwd)) user.setMdp(new_pwd);
-		utilisateurDAO.updateUser(user);
+	public void updateUser(HttpServletRequest updated_infos) throws BusinessException {
+		utilisateurDAO.updateUser(updated_infos);
 		
 	}
 
