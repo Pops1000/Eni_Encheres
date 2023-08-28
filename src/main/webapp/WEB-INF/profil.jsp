@@ -17,7 +17,7 @@
     <p><strong>Rue:</strong> ${sessionScope.rue}</p>
     <p><strong>Code Postal:</strong> ${sessionScope.codePostal}</p>
     <p><strong>Ville:</strong> ${sessionScope.ville}</p>
-    <form action="ServletModify" method="POST">
+    <form action="ServletModify" method="GET">
     <button  type="submit" class="btn btn-success">Modifier</button></form>
 </body>
 </html>
