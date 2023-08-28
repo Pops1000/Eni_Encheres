@@ -34,11 +34,12 @@ public class ServletInscription extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 	
-		//TODO check that passwords match
-		//String mdp = request.getParameter("mdp");
-		//String mdpConfirm = request.getParameter("confirmationMotDePasse");
-		
-		Utilisateur user = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
+		//TODO Exporter dans une classe utilitaire
+		String pwd = request.getParameter("mdp");
+		String pwdConfirm = request.getParameter("confirmationMotDePasse");
+		try {
+			if (pwd.equals(pwdConfirm));
+			Utilisateur user = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
 				request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"),
 				request.getParameter("rue"), request.getParameter("codePostal"), request.getParameter("ville"),
 				request.getParameter("mdp"), 0, 0);
@@ -48,7 +49,12 @@ public class ServletInscription extends HttpServlet {
 			
 		} catch (BusinessException e) {
 			
-			// TODO: handle exception
+			// TODO: gérer erreur sur création de l'utilisateur
 		}
+		} catch (Exception e) {
+			// TODO: gérer l'erreur lorsque le mpp et sa confirmation ne sont pas identiques
+		}
+		
+		
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 }}

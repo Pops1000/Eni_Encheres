@@ -50,8 +50,9 @@ public class UtilisateurManager {
 		utilisateurDAO.createUser(user);
 	}
 
-	public void updateUser(HttpServletRequest updated_infos) throws BusinessException {
-		utilisateurDAO.updateUser(updated_infos);
+	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
+			String codePostal, String ville, String pwd) throws BusinessException {
+		utilisateurDAO.updateUser(userId, pseudo, nom, prenom, email, tel, rue, codePostal,ville, pwd);
 		
 	}
 
@@ -70,4 +71,5 @@ public class UtilisateurManager {
 		}
 
 	}
+
 }

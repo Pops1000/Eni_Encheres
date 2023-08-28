@@ -6,10 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import javax.servlet.http.HttpServletRequest;
-
-import com.mysql.cj.Session;
-
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.UtilisateurDAO;
 
@@ -96,33 +92,36 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void updateUser(HttpServletRequest updated_infos) {
-		// TODO Utilisateur connected_user_id = RECUPERE ID USER CONNECTE DEPUIS SESSION
-		// COURANTE
-		String pwd = updated_infos.getParameter("mdp");
-		String new_pwd = updated_infos.getParameter("new_pwd");
-		String confirm_pwd = updated_infos.getParameter("confirm_pwd");
-		if (new_pwd != null && !new_pwd.isEmpty() && new_pwd.equals(confirm_pwd)) pwd = new_pwd;
-		try (Connection con = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = con.prepareStatement(UPDATE_USER)) {
-			pstmt.setString(1, updated_infos.getParameter("pseudo"));
-			pstmt.setString(2, updated_infos.getParameter("nom"));
-			pstmt.setString(3, updated_infos.getParameter("prenom"));
-			pstmt.setString(4, updated_infos.getParameter("email"));
-			pstmt.setString(5, updated_infos.getParameter("tel"));
-			pstmt.setString(6, updated_infos.getParameter("rue"));
-			pstmt.setString(7, updated_infos.getParameter("codePostal"));
-			pstmt.setString(8, updated_infos.getParameter("ville"));
+	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
+			String codePostal, String ville, String pwd) {
+		try (Connection con = ConnectionProvider.getConnection()){
+			con.setAutoCommit(false);
+			try {
+				PreparedStatement pstmt = con.prepareStatement(UPDATE_USER); {
+			pstmt.setString(1, pseudo);
+			pstmt.setString(2, nom);
+			pstmt.setString(3, prenom);
+			pstmt.setString(4, email);
+			pstmt.setString(5, tel);
+			pstmt.setString(6, rue);
+			pstmt.setString(7, codePostal);
+			pstmt.setString(8, ville);
 			pstmt.setString(9, pwd);
-			pstmt.setInt(10, (int) updated_infos.getSession().getAttribute("user_id"));
+			pstmt.setInt(10, userId);
 
 			pstmt.executeUpdate();
+			con.commit();
 			System.out.println("User updated with success");
-
-		} catch (SQLException e) {
-
+			}} catch (SQLException e) {
+				con.rollback();
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+		}catch (SQLException e){
+			e.printStackTrace();
 			System.out.println(e.getMessage());
-		}
+		};
+		
 	}
 
 //	@Override
