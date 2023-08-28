@@ -15,7 +15,7 @@
 
 <div class="container">
         <h2>Mon Profil</h2>
-        <form action="ServletMonProfil" method="POST">
+        <form action="ServletModify" method="POST">
             <div class="mb-3">
                 <label for="pseudo"  class="form-label">Pseudo</label>
                 <input type="text" value="${sessionScope.pseudo}" class="form-control" id="pseudo" name="pseudo" required>
@@ -60,7 +60,9 @@
                 <label for="confirmationMotDePasse" class="form-label">Confirmer le nouveau mot de passe</label>
                 <input type="password" class="form-control" id="confirmationMotDePasse" name="confirm_pwd" >
             </div>
-            <button type="submit" class="btn btn-success">Enregister</button>
+           <!-- TODO : gerer le bouton enregistrer du formulaire
+            --> 
+            <button type="submit" class="btn btn-success">Enregistrer</button>
             <a href="IndexServlet" class="btn btn-secondary">Supprimer mon compte</a>
         </form>
     </div>

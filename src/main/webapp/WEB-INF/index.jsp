@@ -66,7 +66,7 @@
 				acquérir d'autres articles.</p>
 		</div>
 
-		<div>
+	
 			<p></p>
 	</section>
 

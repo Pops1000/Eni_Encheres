@@ -31,10 +31,14 @@ public class ServletModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+	
+				
+		
 		Utilisateur user = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
-                request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"),
-                request.getParameter("rue"), request.getParameter("codePostal"), request.getParameter("ville"),
-                request.getParameter("mdp"), 0, 0);
+               request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"),
+              request.getParameter("rue"), request.getParameter("codePostal"), request.getParameter("ville"),
+              request.getParameter("mdp"),0, 0);
 		String new_pwd=request.getParameter("new_pwd");
 		String confirm_pwd=request.getParameter("confirm_pwd");
 		
@@ -45,6 +49,8 @@ public class ServletModify extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		request.getRequestDispatcher("/WEB-INF/profil.jsp").forward(request, response);
+
 
 	}
 
