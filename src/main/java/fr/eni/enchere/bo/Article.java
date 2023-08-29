@@ -42,6 +42,23 @@ public class Article {
 		this.no_utilisateur = no_utilisateur;
 		this.no_categorie = no_categorie;
 	}
+	
+	
+	/**
+	 * Constructeur pour la création d'un Article
+	 * 
+	 */
+	public Article(String nom, String description, String debut_enchere, String fin_enchere,
+			int prix_initial, int no_utilisateur, int no_categorie) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.debut_enchere = debut_enchere;
+		this.fin_enchere = fin_enchere;
+		this.prix_initial = prix_initial;
+		this.no_utilisateur = no_utilisateur;
+		this.no_categorie = no_categorie;
+	}
 
 	public int getNo_article() {
 		return no_article;

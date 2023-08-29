@@ -21,6 +21,8 @@ public class ArticleManager {
 		return instance;
 	}
 	
+	
+	
 	public void createArticle(Article article) throws BusinessException {
 		articleDAO.createArticle(article);
 	}

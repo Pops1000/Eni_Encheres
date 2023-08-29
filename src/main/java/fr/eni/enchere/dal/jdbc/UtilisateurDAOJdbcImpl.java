@@ -84,8 +84,14 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setInt(10, user.getCredit());
 			pstmt.setInt(11, user.getAdmin());
 
-			pstmt.executeUpdate();
+			int nb = pstmt.executeUpdate();
 			System.out.println("User created with success");
+			// récuperation de l'id utilisateur
+			if(nb>0) {
+				ResultSet rss = pstmt.getGeneratedKeys();
+				rss.next();
+				user.setNo_utilisateur(rss.getInt(1));
+			}
 
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());

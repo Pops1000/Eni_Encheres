@@ -1,16 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
+<header>
+<h1></h1>
+</header>
 <body>
     <div class="container">
+    <div class="row justify-content-center">
+    	<div class="col-md-4">
         <h2>Inscription</h2>
         <form action="ServletInscription" method="POST">
             <div class="mb-3">
@@ -22,7 +27,7 @@
                 <input type="text" class="form-control" id="nom" name="nom" required>
             </div>
             <div class="mb-3">
-                <label for="prenom" class="form-label">Prénom</label>
+                <label for="prenom" class="form-label">PrÃ©nom</label>
                 <input type="text" class="form-control" id="prenom" name="prenom" required>
             </div>
             <div class="mb-3">
@@ -30,7 +35,7 @@
                 <input type="email" class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
-                <label for="tel" class="form-label">Téléphone</label>
+                <label for="tel" class="form-label">TÃ©lÃ©phone</label>
                 <input type="tel" class="form-control" id="tel" name="tel">
             </div>
             <div class="mb-3">
@@ -53,9 +58,11 @@
                 <label for="confirmationMotDePasse" class="form-label">Confirmer le mot de passe</label>
                 <input type="password" class="form-control" id="confirmationMotDePasse" name="confirmationMotDePasse" required>
             </div>
-            <button type="submit" class="btn btn-success">Créer</button>
+            <button type="submit" class="btn btn-success">CrÃ©er</button>
             <a href="IndexServlet" class="btn btn-secondary">Annuler</a>
         </form>
+    </div>
+    </div>
     </div>
 </body>
 </html>

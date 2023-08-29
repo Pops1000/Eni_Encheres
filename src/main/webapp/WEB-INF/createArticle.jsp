@@ -1,47 +1,71 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<meta charset="UTF-8">
 <title>Insert title here</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
 </head>
+<header>
+<h1></h1>
+</header>
 <body>
-<h2>Créer un nouvel article</h2>
+<div class="container">
+<div class="row justify-content-center">
+    		<div class="col-md-4">
+	<h2>CrÃ©er un nouvel article</h2>
     <form action="ServletCreateArticle" method="POST">
-        <label for="nom_article">Nom de l'article:</label><br>
-        <input type="text" id="nom_article" name="nom" required><br>
+        <label for="nom">Nom de l'article :</label><br>
+        <input type="text" class="form-control" id="nom" name="nom" required><br>
         
-        <label for="description">Description:</label><br>
-        <textarea id="description" name="description" rows="4" cols="50" required></textarea><br>
+        <label for="description">Description :</label><br>
+        <textarea class="form-control" id="description" name="description" rows="4" cols="50" 
+        required></textarea><br>
         
-        <label for="date_debut_enchere">Date de début d'enchères:</label><br>
-        <input type="date" id="date_debut_enchere" name="debutEnchere" required value="<%= LocalDate.now().toString() %>"><br>
+        <label for="debutEnchere">Date de dÃ©but d'enchÃ¨res :</label><br>
+        <input type="date" class="form-control" id="debutEnchere" name="debutEnchere" 
+        required value="<%= LocalDate.now().toString() %>"><br>
         
-        <label for="date_fin_enchere">Date de fin d'enchères:</label><br>
-        <input type="date" id="date_fin_enchere" name="finEnchere" required value="<%= LocalDate.now().toString() %>"><br>
+        <label for="finEnchere">Date de fin d'enchÃ¨res :</label><br>
+        <input type="date" class="form-control" id="finEnchere" name="finEnchere" 
+        required value="<%= LocalDate.now().toString() %>"><br>
         
-        <label for="prix_initial">Prix initial:</label><br>
-        <input type="number" id="prix_initial" name="prixInitial"><br>
+        <label for="prixInitial">Prix initial:</label><br>
+        <input type="number" class="form-control" id="prixInitial" name="prixInitial"><br>
         
-        <label for="no_utilisateur">Numéro de l'utilisateur:</label><br>
-        <input type="number" id="no_utilisateur" name="noUtilisateur" required><br>
+        <label for="noUtilisateur">NumÃ©ro de l'utilisateur :</label><br>
+        <input type="number" class="form-control" id="noUtilisateur" name="noUtilisateur" 
+        value="<c:out value='${noUtilisateur}'/>"disabled><br>
         
-        <label for="no_categorie">Numéro de la catégorie:</label><br>
-        <input type="number" id="no_categorie" name="noCategorie" required><br>
+		<label for="categorie">SÃ©lectionnez une catÃ©gorie :</label>
+		<select class="form-control" id="categorie" name="categorie">
+    	<option value="">-- SÃ©lectionner une catÃ©gorie --</option>
+    	<c:forEach var="categorie" items="${categories}">
+        <option value="${categories.no_categorie}">${categories.libelle}</option>
+    	</c:forEach>
+		</select>
+
+        <label for="rue">Rue :</label><br>
+        <input type="text" class="form-control" id="rue" name="rue" value="<c:out 
+        value='${rue}'/>"disabled><br>
+        <label for="codePostal">Code Postal :</label><br>
+        <input type="text" class="form-control" id="codePostal" name="codePostal" 
+        value="<c:out value='${codePostal}'/>"disabled><br>
+        <label for="ville">Rue :</label><br>
+        <input type="text" class="form-control" id="ville" name="ville" 
+        value="<c:out value='${ville}'/>"disabled><br>
+       
+
         
-         <label for="categorie">Sélectionnez une catégorie :</label>
-        <select id="categorie" name="categorie">
-            <option value="alimentation">Alimentation</option>
-            <option value="electronique">Électronique</option>
-            <option value="mode">Mode</option>
-            <option value="maison">Maison</option>
-            <option value="sport">Sport</option>
-        </select>
-        
-        <button type="submit" class="btn btn-success">Créer</button>
+        <button type="submit" class="btn btn-success" >CrÃ©er</button>
     </form>
+    	<a href="<c:url value='/IndexServlet' />" type="submit" class="btn btn-success"> Annuler </a>
+</div>
+</div>
+</div>
 </body>
 </html>

@@ -64,6 +64,7 @@
             <a href="IndexServlet" class="btn btn-secondary">Supprimer mon compte</a>
         </form>
     </div>
+    <a href="<%=request.getContextPath()%>/IndexServlet" type="submit" class="btn btn-success"> Annuler </a>
 
 </body>
 </html>

@@ -26,31 +26,12 @@
 	<nav>
 		<c:choose>
 			<c:when test="${empty sessionScope.pseudo}">
-				<form action="UtilisateurServlet" method="GET">
-					<button type="submit" class="btn btn-success">Se connecter</button>
-				</form>
-
-				<form action="ServletInscription" method="GET">
-					<button type="submit" class="btn btn-success">S'inscrire</button>
-				</form>
+				<jsp:include page="navbarAccueil.jsp"></jsp:include>
 			</c:when>
 			<c:otherwise>
 				<h2>Bienvenue, ${sessionScope.pseudo}!</h2>
 				<!-- Autres éléments à afficher pour un utilisateur connecté -->
-				<form action="ServletCreateArticle" method="GET">
-					<button type="submit" class="btn btn-success">Enchères</button>
-				</form>
-				<form action="ServletCreateArticle" method="GET">
-					<button type="submit" class="btn btn-success">Vendre un article</button>
-				</form>
-				<form action="ServletMonProfil" method="GET">
-					<button type="submit" class="btn btn-success">Mon profil</button>
-				</form>
-				
-				<form action="ServletDisconectUser" method="GET">
-					<button type="submit" class="btn btn-success">Se déconnecter</button>
-				</form>
-				
+				<jsp:include page="navbarConnecter.jsp"></jsp:include>
 			</c:otherwise>
 		</c:choose>
 
@@ -68,6 +49,7 @@
 
 		<div>
 			<p></p>
+		</div>
 	</section>
 
 

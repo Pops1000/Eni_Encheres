@@ -10,6 +10,8 @@
 </head>
 <body>
 	 <div class="container">
+	 <div class="row justify-content-center">
+    		<div class="col-md-4">
         <h2>Connexion</h2>
         <form action="UtilisateurServlet" method="POST">
         <c:if test="${!empty listeCodesErreur}">
@@ -37,7 +39,7 @@
             <button type="submit" class="btn btn-success">Se connecter</button>
         </form>
     </div>
-	
-	
+	</div>
+	</div>
 </body>
 </html>
