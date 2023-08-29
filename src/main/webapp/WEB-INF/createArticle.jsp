@@ -41,13 +41,23 @@
         <input type="number" class="form-control" id="noUtilisateur" name="noUtilisateur" 
         value="<c:out value='${noUtilisateur}'/>"disabled><br>
         
-		<label for="categorie">Sélectionnez une catégorie :</label>
-		<select class="form-control" id="categorie" name="categorie">
+        <label for="categorie">Sélectionnez une catégorie :</label>
+        <select class="form-control" id="categorie" name="noCategorie">
+    	<option value="Informatique">Informatique</option>
+    	<option value="Ameublement">Ameublement</option>
+   		<option value="Vêtement">Vêtement</option>
+    	<option value="Sport & Loisirs">Sport & Loisirs</option>
+		</select>
+        
+        
+        
+		<%-- <label for="categorie">Sélectionnez une catégorie :</label>
+		<select class="form-control" id="categorie" name="noCategorie">
     	<option value="">-- Sélectionner une catégorie --</option>
     	<c:forEach var="categorie" items="${categories}">
-        <option value="${categories.no_categorie}">${categories.libelle}</option>
+        <option value="${categorie.no_categorie}">${categorie.libelle}</option>
     	</c:forEach>
-		</select>
+		</select> --%>
 
         <label for="rue">Rue :</label><br>
         <input type="text" class="form-control" id="rue" name="rue" value="<c:out 

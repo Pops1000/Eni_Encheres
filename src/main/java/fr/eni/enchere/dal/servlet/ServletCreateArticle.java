@@ -30,11 +30,11 @@ public class ServletCreateArticle extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/createArticle.jsp").forward(request, response);
-	
 		
+	
 		List<Categorie> categories = getCategoryListFromDatabase();
 		request.setAttribute("categories", categories);
+		request.getRequestDispatcher("/WEB-INF/createArticle.jsp").forward(request, response);
 		
 //	
 //	// Récupérez le numéro d'article à partir des paramètres de la requête, supposons que le paramètre s'appelle "no_article"
@@ -124,7 +124,7 @@ public class ServletCreateArticle extends HttpServlet {
 	        	    }
 	        }
 	        
-		
+	       
 	
 //		Article article = new Article(request.getParameter("nom"), request.getParameter("description"),
 //				request.getParameter("debutEnchere"), request.getParameter("finEnchere"),  Integer.parseInt(request.getParameter("prixInitial")), 0,
