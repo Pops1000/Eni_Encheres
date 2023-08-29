@@ -31,6 +31,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 		} catch (SQLException e) {
 			// TODO : Gestion de l'exception !
+			e.printStackTrace();
 		}
 		return user;
 
@@ -63,6 +64,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 		} catch (SQLException e) {
 			// TODO : Gestion de l'exception !
+			e.printStackTrace();
 		}
 		return user;
 
@@ -94,7 +96,9 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 
 		} catch (SQLException e) {
+			// TODO : Gestion de l'exception !
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
@@ -118,7 +122,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			System.out.println("User updated with success");
 
 		} catch (SQLException e) {
-			
+			// TODO : Gestion de l'exception !
+			e.printStackTrace();
 			System.out.println(e.getMessage());
 		}
 	}
@@ -139,7 +144,8 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 				System.out.println("User deleted with success");
 
 			} catch (SQLException e) {
-				
+				// TODO : Gestion de l'exception !
+				e.printStackTrace();
 				System.out.println(e.getMessage());
 			}
 	}

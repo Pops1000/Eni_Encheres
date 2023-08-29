@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.time.LocalDate" %>
 <!DOCTYPE html>
@@ -46,7 +46,7 @@
     	<option value="Informatique">Informatique</option>
     	<option value="Ameublement">Ameublement</option>
    		<option value="Vêtement">Vêtement</option>
-    	<option value="Sport & Loisirs">Sport & Loisirs</option>
+    	<option value="Sport & Loisirs">Sport Loisirs</option>
 		</select>
         
         

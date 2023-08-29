@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>index</title>
 
@@ -30,7 +30,7 @@
 			</c:when>
 			<c:otherwise>
 				<h2>Bienvenue, ${sessionScope.pseudo}!</h2>
-				<!-- Autres éléments à afficher pour un utilisateur connecté -->
+				<!-- Autres Ã©lÃ©ments Ã  afficher pour un utilisateur connectÃ© -->
 				<jsp:include page="navbarConnecter.jsp"></jsp:include>
 			</c:otherwise>
 		</c:choose>
@@ -38,13 +38,13 @@
 	</nav>
 	<section class="container mt-5">
 		<div>
-			<p>L'association "Les objets sont nos amis" aspire à créer une
+			<p>L'association "Les objets sont nos amis" aspire Ã  crÃ©er une
 				plateforme web novatrice permettant la transmission d'objets de
-				seconde main, sans qu'il y ait de transactions financières
-				impliquées. La valeur des articles sera définie selon un système
-				d'enchères basé sur une unité de points. Ces points seront gagnés
-				par la vente d'objets et pourront ensuite être utilisés pour
-				acquérir d'autres articles.</p>
+				seconde main, sans qu'il y ait de transactions financiÃ¨res
+				impliquÃ©es. La valeur des articles sera dÃ©finie selon un systÃ¨me
+				d'enchÃ¨res basÃ© sur une unitÃ© de points. Ces points seront gagnÃ©s
+				par la vente d'objets et pourront ensuite Ãªtre utilisÃ©s pour
+				acquÃ©rir d'autres articles.</p>
 		</div>
 
 		<div>
@@ -56,7 +56,7 @@
 
 	<footer>
 		<section class="container mt-5">
-			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits réservés.</p>
+			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits rÃ©servÃ©s.</p>
 		</section>
 	</footer>
 </body>

@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 <title>Mon Profil</title>
@@ -25,7 +25,7 @@
                 <input type="text" value="${sessionScope.nom}" class="form-control" id="nom" name="nom" required>
             </div>
             <div class="mb-3">
-                <label for="prenom" class="form-label">Prénom</label>
+                <label for="prenom" class="form-label">PrÃ©nom</label>
                 <input type="text"value="${sessionScope.prenom}" class="form-control" id="prenom" name="prenom" required>
             </div>
             <div class="mb-3">
@@ -33,7 +33,7 @@
                 <input type="email" value="${sessionScope.email}"class="form-control" id="email" name="email" required>
             </div>
             <div class="mb-3">
-                <label for="tel" class="form-label">Téléphone</label>
+                <label for="tel" class="form-label">TÃ©lÃ©phone</label>
                 <input type="tel" value="${sessionScope.tel}" class="form-control" id="tel" name="tel">
             </div>
             <div class="mb-3">
