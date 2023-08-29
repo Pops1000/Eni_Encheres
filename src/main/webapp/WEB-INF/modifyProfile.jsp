@@ -63,8 +63,8 @@
            <!-- TODO : gerer le bouton enregistrer du formulaire
             --> 
             <button type="submit" class="btn btn-success">Enregistrer</button>
-            <a href="IndexServlet" class="btn btn-secondary">Supprimer mon compte</a>
         </form>
+        <form action="ServletDeleteUser" method="GET"> <button type="submit" class="btn btn-danger" action="delete" value="ServletDeleteUser">Supprimer le compte</button></form>
     </div>
 
 </body>

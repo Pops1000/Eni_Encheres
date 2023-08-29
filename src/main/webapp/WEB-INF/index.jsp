@@ -41,16 +41,31 @@
 					<button type="submit" class="btn btn-success">Enchères</button>
 				</form>
 				<form action="ServletCreateArticle" method="GET">
-					<button type="submit" class="btn btn-success">Vendre un article</button>
+					<button type="submit" class="btn btn-success">Vendre un
+						article</button>
 				</form>
 				<form action="ServletMonProfil" method="GET">
 					<button type="submit" class="btn btn-success">Mon profil</button>
 				</form>
-				
+
 				<form action="ServletDisconectUser" method="GET">
-					<button type="submit" class="btn btn-success">Se déconnecter</button>
+					<button type="submit" class="btn btn-success">Se
+						déconnecter</button>
 				</form>
-				
+				<div>
+					<h2>Articles</h2>
+					<ul>
+						<%-- Supposons que vous ayez une liste d'articles dans la session --%>
+						<c:forEach var="article" items="${sessionScope.listeArticles}"
+							varStatus="status">
+							<c:if test="${status.index < 6}">
+								<li><a
+									href="affichageArticle.jsp?no_article=${article.no_article}">${article.nom}</a></li>
+							</c:if>
+						</c:forEach>
+					</ul>
+				</div>
+
 			</c:otherwise>
 		</c:choose>
 
@@ -66,8 +81,8 @@
 				acquérir d'autres articles.</p>
 		</div>
 
-	
-			<p></p>
+
+		<p></p>
 	</section>
 
 

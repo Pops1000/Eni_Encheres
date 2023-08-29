@@ -1,5 +1,6 @@
 package fr.eni.enchere.bll;
 
+import java.util.List;
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.dal.ArticleDAO;
@@ -25,4 +26,9 @@ public class ArticleManager {
 		articleDAO.createArticle(article);
 	}
 
+	public List<Article> getAllArticles() {
+		return articleDAO.getAllArticles();
+	}
+
+	
 }

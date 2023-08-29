@@ -1,9 +1,7 @@
 package fr.eni.enchere.dal.servlet;
 
 import java.io.IOException;
-
-
-
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -55,7 +55,11 @@ public class ServletSeConnecter extends HttpServlet {
 				session.setAttribute("ville", connectedUser.getVille());
 				session.setAttribute("mdp", connectedUser.getMdp());
 				
-				
+				  ArticleManager articleManager = ArticleManager.getInstance();
+				    List<Article> listeArticles = articleManager.getAllArticles();
+				    session.setAttribute("listeArticles", listeArticles);
+
+
 			
 				request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 				
