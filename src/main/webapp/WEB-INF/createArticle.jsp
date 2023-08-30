@@ -23,7 +23,7 @@
 		<div class="row justify-content-center">
     		<div class="col-md-4">
 			<h2>Créer un nouvel article</h2>
-    			<form action="ServletCreateArticle" method="POST">
+    			<form action="ServletCreateArticle" method="POST" enctype="multipart/form-data">
         			<label for="nom">Nom de l'article :</label><br>
         			<input type="text" class="form-control" id="nom" name="nom" required><br>
         
@@ -53,8 +53,13 @@
    						<option value="Vêtement">Vêtement</option>
     					<option value="Sport & Loisirs">Sport Loisirs</option>
 					</select>
-					
-					<jsp:include page="uploader.jsp"></jsp:include>
+				<div class="mb-3">
+					<label for="file" class="form-label">Photo de l'article</label>
+        			<div class="input-group">
+            		<input type="file" class="form-control" id="file" name="file">
+          <!--   <label class="input-group-text" for="file">Choisir un fichier</label> -->
+        			</div>
+    			</div>
         
 		<%-- <label for="categorie">Sélectionnez une catégorie :</label>
 		<select class="form-control" id="categorie" name="noCategorie">

@@ -1,33 +1,39 @@
 package fr.eni.enchere.dal.servlet;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 
 import fr.eni.enchere.BusinessException;
-import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.ArticleManagerImpl;
 import fr.eni.enchere.bll.CategorieManagerImpl;
 import fr.eni.enchere.bo.Article;
-import fr.eni.enchere.bo.Categorie;
 
 
 /**
  * Servlet implementation class ServletCreateArticle
  */
 @WebServlet("/ServletCreateArticle")
+@MultipartConfig	(fileSizeThreshold=1024*1024*10, 	// 10 MB 
+					maxFileSize=1024*1024*50,      	// 50 MB
+					maxRequestSize=1024*1024*100)   	// 100 MB
+
 public class ServletCreateArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	
+	private static final String UPLOAD_DIR = "upload";
 	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -39,19 +45,7 @@ public class ServletCreateArticle extends HttpServlet {
 //		request.setAttribute("categories", categories);
 		
 		request.getRequestDispatcher("/WEB-INF/createArticle.jsp").forward(request, response);
-	
-	
-	String action = request.getParameter("action");
-    if ("list".equals(action)) {
-        // Code pour afficher la liste d'articles
-    } else if ("create".equals(action)) {
-        // Rediriger vers la servlet de création d'article
-        response.sendRedirect("createArticle");
-    } else {
-        // Autres traitements si nécessaire
-    }
-}
-
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -86,6 +80,27 @@ public class ServletCreateArticle extends HttpServlet {
 	            		noUtilisateur, noCategorie);
 	            try {
 	                ArticleManagerImpl.getInstance().createArticle(article);
+	                
+	             // Gestion de l'upload d'image
+	                String uploadDir = getServletContext().getRealPath(UPLOAD_DIR); // Chemin du dossier "uploads" dans votre application
+
+	                Part filePart = request.getPart("file"); // 'file' est le nom de l'input file dans le formulaire
+	                
+	                String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString();
+	                String filePath = uploadDir + fileName;
+	                System.out.println(filePath);
+
+	               try {
+	        		InputStream fileContent = filePart.getInputStream();
+	        		        Files.copy(fileContent, Paths.get(filePath));
+	        		        request.setAttribute("message", "Fichier téléchargé avec succès : " + fileName);
+	        	} catch (IOException e) {
+	        		// TODO Auto-generated catch block
+	        		e.printStackTrace();
+	        	}
+	        	// Sauvegarde du chemin de l'image-> rajouter dans BLL et DAO + champs dans DB
+	        	//	article.setImagePath("/upload/" + fileName);
+	                
 	            } catch (BusinessException e) {
 	                // TODO Gérer l'exception
 	            	e.printStackTrace();
@@ -131,5 +146,7 @@ public class ServletCreateArticle extends HttpServlet {
 //		}
 		
 	}
+	
+	
 
 }
