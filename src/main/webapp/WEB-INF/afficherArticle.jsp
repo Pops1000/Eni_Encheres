@@ -32,10 +32,15 @@
             <div class="card-header">
             	<div class="d-flex justify-content-between">
                 <h5 class="card-title">${article.nom}</h5>
-                <a href="EncherirServlet" class="btn btn-secondary">Enchérir</a>
+                	<div>
+                		<form action="ServletCreateArticle" method="post">
+    					<label for="enchere">Montant de l'enchère :</label>
+    					<input type="number" id="enchere" name="enchere" min="0" required>
+    					<button type="submit" class="btn btn-secondary">Enchérir</button>
+						</form>
+					</div>
                 </div>
             </div>
-            
             <div class="card-body">
                 <p class="card-text">Description : ${article.description}</p>
                 <p class="card-text">Date de début des enchères : ${article.debut_enchere}</p>
@@ -49,6 +54,8 @@
         </div>
     </c:forEach>
 	</section>
+		
+	
 
 	<footer>
 		<section class="container mt-5">
