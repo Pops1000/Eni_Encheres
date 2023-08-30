@@ -8,8 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.eni.enchere.bo.Article;
-import fr.eni.enchere.bo.Categorie;
+import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.ArticleDAO;
+
 
 public class ArticleDAOJdbcImpl implements ArticleDAO{
 	
@@ -18,8 +19,19 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			+ "prix_initial,no_utilisateur,no_categorie) "
 			+ "VALUES (?,?,?,?,?,?,?);";
 	private static final String SELECT_ALL_ARTICLE = "SELECT no_article, nom_article, "
-			+ "description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente, no_utilisateur, no_categorie ;";
+			+ "description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente,"
+			+ " no_utilisateur, no_categorie ;";
+	
+//	private static final String SELECT_ARTICLE_AND_USER = "SELECT a.no_article,a.nom_article,"
+//			+ " a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,"
+//			+ " a.prix_vente, a.no_utilisateur, a.no_categorie, u.no_utilisateur, u.pseudo, u.rue, u.code_postal, u.ville FROM articles_vendus a "
+//			+ "INNER JOIN utilisateurs u ON a.no_utilisateur = u.no_utilisateur;";
 
+	private static final String SELECT_ARTICLE_AND_USER="SELECT a.no_article,a.nom_article, "
+			+ "a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,"
+			+ " a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.rue, u.code_postal, u.ville FROM articles_vendus a "
+			+ "INNER JOIN utilisateurs u ON a.no_utilisateur = u.no_utilisateur;";
+	
 	@Override
 	public Article getArticleByNo(int no_article) {
 		return null;
@@ -51,6 +63,42 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public List<Article> getListArticle() {
+		List<Article> resultat = new ArrayList <>();
+		
+		try (Connection con = ConnectionProvider.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(SELECT_ARTICLE_AND_USER);
+			ResultSet rs = stmt.executeQuery();
+			while(rs.next()) {
+				Article article = new Article();
+				article.setNo_article(rs.getInt("no_article"));
+				article.setNom(rs.getString("nom_article"));
+				article.setDescription(rs.getString("description"));
+				article.setDebut_enchere(rs.getString("date_debut_encheres"));
+				article.setFin_enchere(rs.getString("date_fin_encheres"));
+				article.setPrix_initial(rs.getInt("prix_initial"));
+				article.setPrix_vente(rs.getInt("prix_vente"));
+				article.setNo_utilisateur(rs.getInt("no_utilisateur"));
+				article.setNo_categorie(rs.getInt("no_categorie"));
+				
+				Utilisateur utilisateur = new Utilisateur();
+				utilisateur.setPseudo(rs.getString("pseudo"));
+				utilisateur.setRue(rs.getString("rue"));
+				utilisateur.setCodePostal(rs.getString("code_postal"));
+				utilisateur.setVille(rs.getString("ville"));
+				
+				article.setUtilisateur(utilisateur);
+	
+				resultat.add(article);
+				System.out.println(article);
+			}
+		}catch (SQLException e) {
+			System.out.println("Erreur lors de la récupération de la liste des articles : " + e.getMessage());
+		}
+		return resultat;
 	}
 
 

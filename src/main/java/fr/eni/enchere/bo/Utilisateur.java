@@ -147,16 +147,52 @@ public class Utilisateur {
 		this.credit = credit;
 		this.admin = admin;
 	}
+	
+//	/**
+//	 * constructeur d'addresse utilisateur
+//	 * @param no_utilisateur
+//	 * @param rue
+//	 * @param codePostal
+//	 * @param ville
+//	 */
+//
+//	public Utilisateur(int no_utilisateur, String rue, String codePostal, String ville) {
+//		super();
+//		this.no_utilisateur = no_utilisateur;
+//		this.rue = rue;
+//		this.codePostal = codePostal;
+//		this.ville = ville;
+//	}
+//	
+	/**
+	 * constructeur d'addresse Pseudo
+	 * @param pseudo
+	 * @param rue
+	 * @param codePostal
+	 * @param ville
+	 */
+
+	public Utilisateur(String pseudo, String rue, String codePostal, String ville) {
+		super();
+		this.pseudo = pseudo;
+		this.rue = rue;
+		this.codePostal = codePostal;
+		this.ville = ville;
+	}
 
 	public Utilisateur() {
 		super();
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
+//				+ prenom + ", email=" + email + ", tel=" + tel + ", rue=" + rue + ", codePostal=" + codePostal
+//				+ ", ville=" + ville + ", mdp=" + mdp + ", credit=" + credit + ", admin=" + admin + "]";
+//	}
 	@Override
 	public String toString() {
-		return "Utilisateur [no_utilisateur=" + no_utilisateur + ", pseudo=" + pseudo + ", nom=" + nom + ", prenom="
-				+ prenom + ", email=" + email + ", tel=" + tel + ", rue=" + rue + ", codePostal=" + codePostal
-				+ ", ville=" + ville + ", mdp=" + mdp + ", credit=" + credit + ", admin=" + admin + "]";
+		return "Utilisateur [" + pseudo +" "+ rue +" "+ codePostal +" "+ ville +"]";
 	}
 
 	

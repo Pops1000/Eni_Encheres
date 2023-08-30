@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <header>
-<h1></h1>
+	<div class="container mt-5">
+		<h1>Les objets sont nos amis</h1>
+	</div>
 </header>
+	<div class="container mt-5">
+		<jsp:include page="navbarAccueil.jsp"></jsp:include>
+	</div>
 <body>
     <div class="container">
     <div class="row justify-content-center">
@@ -64,5 +69,10 @@
     </div>
     </div>
     </div>
+    <footer>
+		<section class="container mt-5">
+			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits réservés.</p>
+		</section>
+	</footer>
 </body>
 </html>

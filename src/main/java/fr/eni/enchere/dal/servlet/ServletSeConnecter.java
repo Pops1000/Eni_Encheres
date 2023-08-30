@@ -63,11 +63,7 @@ public class ServletSeConnecter extends HttpServlet {
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			
-			;
-	}
-
-
-	}
+			}
+		}
 
 }

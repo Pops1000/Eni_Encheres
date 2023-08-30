@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bll.UtilisateurManager;
@@ -31,20 +32,41 @@ public class ServletModify extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		Utilisateur user = new Utilisateur(request.getParameter("pseudo"), request.getParameter("nom"),
-                request.getParameter("prenom"), request.getParameter("email"), request.getParameter("tel"),
-                request.getParameter("rue"), request.getParameter("codePostal"), request.getParameter("ville"),
-                request.getParameter("mdp"), 0, 0);
-		String new_pwd=request.getParameter("new_pwd");
-		String confirm_pwd=request.getParameter("confirm_pwd");
+		HttpSession session = request.getSession();
 		
-		
+		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
+		String pseudo = request.getParameter("pseudo");
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String email = request.getParameter("email");
+		String tel = request.getParameter("tel");
+		String rue = request.getParameter("rue");
+		String codePostal = request.getParameter("codePostal");
+		String ville = request.getParameter("ville");
+		String mdp = request.getParameter("mdp");
+        String new_pwd = request.getParameter("new_pwd");
+        String confirm_pwd = request.getParameter("confirm_pwd");
+        if (new_pwd != null && !new_pwd.isEmpty() && new_pwd.equals(confirm_pwd)) mdp = new_pwd;
+        
 		try {
-			UtilisateurManager.getInstance().updateUser(user,new_pwd ,confirm_pwd );
+			UtilisateurManager.getInstance().updateUser(noUtilisateur, pseudo, nom, prenom, email, tel, rue, codePostal, ville, mdp);
+			
+			session.setAttribute("pseudo", pseudo);
+			session.setAttribute("nom", nom);
+			session.setAttribute("prenom", prenom);
+			session.setAttribute("email", email);
+			session.setAttribute("tel", tel);
+			session.setAttribute("rue", rue);
+			session.setAttribute("codePostal", codePostal);
+			session.setAttribute("ville", ville);
+			session.setAttribute("mdp", mdp);
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		request.getRequestDispatcher("/WEB-INF/profil.jsp").forward(request, response);
+
 
 	}
 

@@ -51,9 +51,9 @@ public class UtilisateurManager {
 		utilisateurDAO.createUser(user);
 	}
 
-	public void updateUser(Utilisateur user,String new_pwd,String confirm_pwd) throws BusinessException {
-		if (new_pwd!=null && new_pwd.equals(confirm_pwd)) user.setMdp(new_pwd);
-		utilisateurDAO.updateUser(user);
+	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
+			String codePostal, String ville, String mdp) throws BusinessException {
+		utilisateurDAO.updateUser(userId, pseudo, nom, prenom, email, tel, rue, codePostal,ville, mdp);
 		
 	}
 

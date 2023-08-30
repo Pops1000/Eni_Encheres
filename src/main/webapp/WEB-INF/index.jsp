@@ -23,7 +23,7 @@
 		</div>
 
 	</header>
-	<nav>
+	<div class="container mt-5">
 		<c:choose>
 			<c:when test="${empty sessionScope.pseudo}">
 				<jsp:include page="navbarAccueil.jsp"></jsp:include>
@@ -34,8 +34,7 @@
 				<jsp:include page="navbarConnecter.jsp"></jsp:include>
 			</c:otherwise>
 		</c:choose>
-
-	</nav>
+	</div>
 	<section class="container mt-5">
 		<div>
 			<p>L'association "Les objets sont nos amis" aspire à créer une
@@ -46,13 +45,26 @@
 				par la vente d'objets et pourront ensuite être utilisés pour
 				acquérir d'autres articles.</p>
 		</div>
-
-		<div>
-			<p></p>
-		</div>
 	</section>
-
-
+	<section>
+		<div class="container mt-5">
+    <c:forEach items="${listArticle}" var="article">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h5 class="card-title">${article.nom}</h5>
+            </div>
+            <div class="card-body">
+                <p class="card-text">Description : ${article.description}</p>
+                <p class="card-text">Date de début des enchères : ${article.debut_enchere}</p>
+                <p class="card-text">Date de fin des enchères : ${article.fin_enchere}</p>
+                <p class="card-text">Mise à prix : ${article.prix_initial}</p>
+                <p class="card-text">Meilleure offre : ${article.prix_vente}</p>
+                <p class="card-text">Adresse pour le retrait : ${article.utilisateur.rue} ${article.utilisateur.codePostal} ${article.utilisateur.ville}</p>
+                <p class="card-text">Vendeur : ${article.utilisateur.pseudo}</p>
+            </div>
+        </div>
+    </c:forEach>
+	</section>
 
 	<footer>
 		<section class="container mt-5">

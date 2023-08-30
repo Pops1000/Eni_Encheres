@@ -1,4 +1,4 @@
-package fr.eni.enchere.ihm;
+package fr.eni.enchere.dal.servlet;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,45 +14,33 @@ import fr.eni.enchere.bll.ArticleManagerImpl;
 import fr.eni.enchere.bo.Article;
 
 /**
- * Servlet implementation class indexServlet
+ * Servlet implementation class ServletAfficherArticle
  */
-@WebServlet("/IndexServlet")
-public class IndexServlet extends HttpServlet {
+@WebServlet("/ServletAfficherArticle")
+public class ServletAfficherArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
-	private ArticleManager articleManager = ArticleManagerImpl.getInstance();
 
+	private ArticleManager articleManager = ArticleManagerImpl.getInstance();
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		List<Article> listArticle = null;
 		listArticle = articleManager.getAllArticle();
 		
 		request.setAttribute("listArticle",listArticle);
-		
-		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/afficherArticle.jsp").forward(request, response);
+			
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		
-		
-//		String action = request.getParameter("action");
-//
-//		if ("login".equals(action)) {
-//		    // Code renvoyer a la servlet pour gérer la connexion
-//			request.getRequestDispatcher("UtilisateurServlet").forward(request, response);
-//		} else if ("register".equals(action)) {
-//		    // Code renvoyer a la servlet pour gérer l'inscription
-//			System.out.println("en attente de dev");
-//		}
-	
-	
 	}
 
 }

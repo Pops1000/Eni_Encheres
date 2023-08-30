@@ -1,5 +1,7 @@
 package fr.eni.enchere.bll;
 
+import java.util.List;
+
 import fr.eni.enchere.BusinessException;
 import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.dal.ArticleDAO;
@@ -27,6 +29,11 @@ public class ArticleManagerImpl implements ArticleManager {
 	@Override
 	public void getArticleByNo(int no_article) throws BusinessException {
 		articleDAO.getArticleByNo(no_article);
+	}
+
+	@Override
+	public List<Article> getAllArticle() {
+		return articleDAO.getListArticle();
 	}
 
 }

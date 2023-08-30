@@ -28,6 +28,7 @@ public class ServletCreateArticle extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -36,9 +37,21 @@ public class ServletCreateArticle extends HttpServlet {
 		// TODO a revoir pour l'affichage des categories ds un menu déroulant de la JSP et le getParameter en int directement.
 //		List<Categorie> categories = new getCategoryListFromDatabase();
 //		request.setAttribute("categories", categories);
-		request.getRequestDispatcher("/WEB-INF/createArticle.jsp").forward(request, response);
 		
-	}
+		request.getRequestDispatcher("/WEB-INF/createArticle.jsp").forward(request, response);
+	
+	
+	String action = request.getParameter("action");
+    if ("list".equals(action)) {
+        // Code pour afficher la liste d'articles
+    } else if ("create".equals(action)) {
+        // Rediriger vers la servlet de création d'article
+        response.sendRedirect("createArticle");
+    } else {
+        // Autres traitements si nécessaire
+    }
+}
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

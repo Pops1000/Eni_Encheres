@@ -103,29 +103,36 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	}
 
 	@Override
-	public void updateUser(Utilisateur user) {
-		//TODO Utilisateur connected_user_id = RECUPERE ID USER CONNECTE DEPUIS SESSION COURANTE 
-		
-		try (Connection con = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(UPDATE_USER)) {
-			pstmt.setString(1, user.getPseudo());
-			pstmt.setString(2, user.getNom());
-			pstmt.setString(3, user.getPrenom());
-			pstmt.setString(4, user.getEmail());
-			pstmt.setString(5, user.getTel());
-			pstmt.setString(6, user.getRue());
-			pstmt.setString(7, user.getCodePostal());
-			pstmt.setString(8, user.getVille());
-			pstmt.setString(9, user.getMdp());
+	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
+			String codePostal, String ville, String mdp) {
+		try (Connection con = ConnectionProvider.getConnection()){
+			con.setAutoCommit(false);
+			try {
+				PreparedStatement pstmt = con.prepareStatement(UPDATE_USER); {
+			pstmt.setString(1, pseudo);
+			pstmt.setString(2, nom);
+			pstmt.setString(3, prenom);
+			pstmt.setString(4, email);
+			pstmt.setString(5, tel);
+			pstmt.setString(6, rue);
+			pstmt.setString(7, codePostal);
+			pstmt.setString(8, ville);
+			pstmt.setString(9, mdp);
+			pstmt.setInt(10, userId);
 
 			pstmt.executeUpdate();
+			con.commit();
 			System.out.println("User updated with success");
-
-		} catch (SQLException e) {
-			// TODO : Gestion de l'exception !
+			}} catch (SQLException e) {
+				con.rollback();
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
+		}catch (SQLException e){
 			e.printStackTrace();
 			System.out.println(e.getMessage());
-		}
+		};
+		
 	}
 
 //	@Override

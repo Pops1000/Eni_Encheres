@@ -12,8 +12,9 @@ public class Article {
 	private int no_utilisateur;
 	private int no_categorie;
 	
+	private Utilisateur utilisateur;
+	
 	public Article () {
-		
 	}
 	
 	public Article(int no_article, String nom, String description, String debut_enchere, String fin_enchere,
@@ -131,6 +132,30 @@ public class Article {
 	public void setNo_categorie(int no_categorie) {
 		this.no_categorie = no_categorie;
 	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	    }
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	    }
+	
+	public String toString() {
+        return "Article{" +
+               "no_article=" + no_article +
+               ", nom='" + nom + '\'' +
+               ", description='" + description + '\'' +
+               ", debut_enchere='" + debut_enchere + '\'' +
+               ", fin_enchere='" + fin_enchere + '\'' +
+               ", prix_initial=" + prix_initial +
+               ", prix_vente=" + prix_vente +
+               ", no_utilisateur=" + no_utilisateur +
+               ", no_categorie=" + no_categorie +
+               ", utilisateur=" + utilisateur +
+               '}';
+    }
+
 }
 
 	
