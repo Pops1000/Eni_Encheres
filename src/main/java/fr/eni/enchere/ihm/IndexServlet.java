@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.enchere.bll.ArticleManager;
+
+import fr.eni.enchere.bll.ArticleManagerImpl;
+
 import fr.eni.enchere.bo.Article;
 
 /**
@@ -19,11 +22,14 @@ import fr.eni.enchere.bo.Article;
 @WebServlet("/IndexServlet")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	private ArticleManager articleManager = ArticleManagerImpl.getInstance();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		ArticleManager articleManager = ArticleManager.getInstance();
@@ -41,6 +47,7 @@ public class IndexServlet extends HttpServlet {
 		for (Article article : listeArticles) {
 		    System.out.println("Article: " + article.getNom() + " - Prix initial: " + article.getPrix_initial());
 		}
+
 		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 	}
 
@@ -48,6 +55,7 @@ public class IndexServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

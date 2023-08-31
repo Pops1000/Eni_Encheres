@@ -43,6 +43,7 @@ public class ServletSeConnecter extends HttpServlet {
 			Utilisateur connectedUser = UtilisateurManager.getInstance().seConnecter(login, password);
 			if (connectedUser != null) {
 				HttpSession session = request.getSession();
+				session.setAttribute("noUtilisateur", connectedUser.getNo_utilisateur());
 				session.setAttribute("userId", connectedUser.getNo_utilisateur());
 				session.setAttribute("pseudo", connectedUser.getPseudo());
 				session.setAttribute("nom", connectedUser.getNom());
@@ -55,7 +56,6 @@ public class ServletSeConnecter extends HttpServlet {
 				session.setAttribute("mdp", connectedUser.getMdp());
 
 			
-			
 				
 				request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
 
@@ -65,9 +65,9 @@ public class ServletSeConnecter extends HttpServlet {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
-			;
 		}
 
 	}
+
 
 }

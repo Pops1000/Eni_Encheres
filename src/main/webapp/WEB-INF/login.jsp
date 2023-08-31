@@ -1,15 +1,23 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page import="fr.eni.enchere.message.LecteurMessage"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <title>Login</title>
+<header>
+<h1>Les objets sont nos amis</h1>
+</header>
 </head>
+	<div class="container mt-5">
+		<jsp:include page="navbarAccueil.jsp"></jsp:include>
+	</div>
 <body>
 	 <div class="container">
+	 <div class="row justify-content-center">
+    		<div class="col-md-4">
         <h2>Connexion</h2>
         <form action="UtilisateurServlet" method="POST">
         <c:if test="${!empty listeCodesErreur}">
@@ -37,7 +45,12 @@
             <button type="submit" class="btn btn-success">Se connecter</button>
         </form>
     </div>
-	
-	
+	</div>
+	</div>
+	<footer>
+		<section class="container mt-5">
+			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits réservés.</p>
+		</section>
+	</footer>
 </body>
 </html>

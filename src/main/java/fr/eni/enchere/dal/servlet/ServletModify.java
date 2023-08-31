@@ -33,7 +33,8 @@ public class ServletModify extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
-		int userId = (int) session.getAttribute("userId");
+
+		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
@@ -42,13 +43,15 @@ public class ServletModify extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
-		String pwd = request.getParameter("pwd");
+
+		String mdp = request.getParameter("mdp");
         String new_pwd = request.getParameter("new_pwd");
         String confirm_pwd = request.getParameter("confirm_pwd");
-        if (new_pwd != null && !new_pwd.isEmpty() && new_pwd.equals(confirm_pwd)) pwd = new_pwd;
+        if (new_pwd != null && !new_pwd.isEmpty() && new_pwd.equals(confirm_pwd)) mdp = new_pwd;
         
 		try {
-			UtilisateurManager.getInstance().updateUser(userId, pseudo, nom, prenom, email, tel, rue, codePostal, ville, pwd);
+			UtilisateurManager.getInstance().updateUser(noUtilisateur, pseudo, nom, prenom, email, tel, rue, codePostal, ville, mdp);
+
 			
 			session.setAttribute("pseudo", pseudo);
 			session.setAttribute("nom", nom);
@@ -58,7 +61,8 @@ public class ServletModify extends HttpServlet {
 			session.setAttribute("rue", rue);
 			session.setAttribute("codePostal", codePostal);
 			session.setAttribute("ville", ville);
-			session.setAttribute("mdp", pwd);
+			session.setAttribute("mdp", mdp);
+
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

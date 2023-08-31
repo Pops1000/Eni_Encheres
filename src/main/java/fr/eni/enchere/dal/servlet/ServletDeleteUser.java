@@ -17,6 +17,7 @@ import fr.eni.enchere.bll.UtilisateurManager;
 @WebServlet("/ServletDeleteUser")
 public class ServletDeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
      
     public ServletDeleteUser() {
         super();
@@ -27,8 +28,7 @@ public class ServletDeleteUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int userId = (int) session.getAttribute("userId");
-		
-		 
+
 			try {
 				UtilisateurManager.getInstance().deleteUser(userId);
 				UtilisateurManager.getInstance().disconnectUser(request.getSession());
@@ -39,13 +39,9 @@ public class ServletDeleteUser extends HttpServlet {
 			}
 	}
 
-	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       
-		
-		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 
-		
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
 	}
 
 }

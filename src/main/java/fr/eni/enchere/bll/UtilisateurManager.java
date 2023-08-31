@@ -51,8 +51,9 @@ public class UtilisateurManager {
 	}
 
 	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
-			String codePostal, String ville, String pwd) throws BusinessException {
-		utilisateurDAO.updateUser(userId, pseudo, nom, prenom, email, tel, rue, codePostal,ville, pwd);
+			String codePostal, String ville, String mdp) throws BusinessException {
+		utilisateurDAO.updateUser(userId, pseudo, nom, prenom, email, tel, rue, codePostal,ville, mdp);
+
 		
 	}
 

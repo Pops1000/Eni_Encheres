@@ -11,13 +11,11 @@ public class Article {
 	private int prix_vente;
 	private int no_utilisateur;
 	private int no_categorie;
-	
-	
-	 private String nomVendeur;
-	 private String prenomVendeur;
+  private Utilisateur utilisateur;
+  private String nomVendeur;
+  private String prenomVendeur;
 	
 	public Article () {
-		
 	}
 	
 	public Article(int no_article, String nom, String description, String debut_enchere, String fin_enchere,
@@ -43,6 +41,23 @@ public class Article {
 		this.fin_enchere = fin_enchere;
 		this.prix_initial = prix_initial;
 		this.prix_vente = prix_vente;
+		this.no_utilisateur = no_utilisateur;
+		this.no_categorie = no_categorie;
+	}
+	
+	
+	/**
+	 * Constructeur pour la création d'un Article
+	 * 
+	 */
+	public Article(String nom, String description, String debut_enchere, String fin_enchere,
+			int prix_initial, int no_utilisateur, int no_categorie) {
+		super();
+		this.nom = nom;
+		this.description = description;
+		this.debut_enchere = debut_enchere;
+		this.fin_enchere = fin_enchere;
+		this.prix_initial = prix_initial;
 		this.no_utilisateur = no_utilisateur;
 		this.no_categorie = no_categorie;
 	}
@@ -119,6 +134,30 @@ public class Article {
 		this.no_categorie = no_categorie;
 	}
 
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	    }
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	    }
+	
+	public String toString() {
+        return "Article{" +
+               "no_article=" + no_article +
+               ", nom='" + nom + '\'' +
+               ", description='" + description + '\'' +
+               ", debut_enchere='" + debut_enchere + '\'' +
+               ", fin_enchere='" + fin_enchere + '\'' +
+               ", prix_initial=" + prix_initial +
+               ", prix_vente=" + prix_vente +
+               ", no_utilisateur=" + no_utilisateur +
+               ", no_categorie=" + no_categorie +
+               ", utilisateur=" + utilisateur +
+               '}';
+    }
+
 	public String getNomVendeur() {
 		return nomVendeur;
 	}
@@ -134,6 +173,7 @@ public class Article {
 	public void setPrenomVendeur(String prenomVendeur) {
 		this.prenomVendeur = prenomVendeur;
 	}
+
 }
 
 	

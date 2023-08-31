@@ -30,6 +30,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 		} catch (SQLException e) {
 			// TODO : Gestion de l'exception !
+			e.printStackTrace();
 		}
 		return user;
 
@@ -62,6 +63,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			}
 		} catch (SQLException e) {
 			// TODO : Gestion de l'exception !
+			e.printStackTrace();
 		}
 		return user;
 
@@ -83,17 +85,26 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setInt(10, user.getCredit());
 			pstmt.setInt(11, user.getAdmin());
 
-			pstmt.executeUpdate();
+			int nb = pstmt.executeUpdate();
 			System.out.println("User created with success");
+			// récuperation de l'id utilisateur
+			if(nb>0) {
+				ResultSet rss = pstmt.getGeneratedKeys();
+				rss.next();
+				user.setNo_utilisateur(rss.getInt(1));
+			}
 
 		} catch (SQLException e) {
+			// TODO : Gestion de l'exception !
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 
 	@Override
 	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
-			String codePostal, String ville, String pwd) {
+			String codePostal, String ville, String mdp) {
+
 		try (Connection con = ConnectionProvider.getConnection()){
 			con.setAutoCommit(false);
 			try {
@@ -106,7 +117,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 			pstmt.setString(6, rue);
 			pstmt.setString(7, codePostal);
 			pstmt.setString(8, ville);
-			pstmt.setString(9, pwd);
+			pstmt.setString(9, mdp);
 			pstmt.setInt(10, userId);
 
 			pstmt.executeUpdate();
@@ -138,10 +149,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 
 			pstmt.executeUpdate();
 			System.out.println("User deleted with success");
-
-		} catch (SQLException e) {
-
-			System.out.println(e.getMessage());
-		}
+			} catch (SQLException e) {
+				// TODO : Gestion de l'exception !
+				e.printStackTrace();
+				System.out.println(e.getMessage());
+			}
 	}
 }
