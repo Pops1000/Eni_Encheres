@@ -24,13 +24,13 @@ public class IndexServlet extends HttpServlet {
 		List<Article> listeArticles = articleManager.getAllArticlesWithUserInfo();
 		request.setAttribute("listeArticles", listeArticles);
 
-		String articleIdParam = request.getParameter("no_article");
-		if (articleIdParam != null && !articleIdParam.isEmpty()) {
-			int articleIdToDisplay = Integer.parseInt(articleIdParam);
-			Article articleToDisplay = articleManager.getArticleById(articleIdToDisplay);
-			request.setAttribute("articleToDisplay", articleToDisplay);
-
-		}
+//		String articleIdParam = request.getParameter("no_article");
+//		if (articleIdParam != null && !articleIdParam.isEmpty()) {
+//			int articleIdToDisplay = Integer.parseInt(articleIdParam);
+//			Article articleToDisplay = articleManager.getArticleById(articleIdToDisplay);
+//			request.setAttribute("articleToDisplay", articleToDisplay);
+//
+//		}
 		for (Article article : listeArticles) {
 			System.out.println("Article: " + article.getNom() + " - Prix initial: " + article.getPrix_initial());
 		}

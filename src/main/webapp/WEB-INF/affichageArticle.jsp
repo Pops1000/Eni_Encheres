@@ -11,7 +11,7 @@
 <title>Afficher Article</title>
 </head>
 <body>
-	<% Article articleToDisplay = (Article) request.getAttribute("articleToDisplay"); %>
+	<% Article article = (Article) request.getAttribute("article"); %>
 
 	<!--TODO : s'occuper des photo -->
 	<div>
@@ -20,11 +20,11 @@
 	</div>
 
 	<div>
-		  <h2><c:out value="${articleToDisplay.nom}" /></h2>
-        <p>Prix initial: ${articleToDisplay.prix_initial}" /> €</p>
-        <p>Prix de vente:<c:out value="${articleToDisplay.prix_vente}" /> €</p>
-        <p>Date de fin d'enchère: <c:out value="${articleToDisplay.fin_enchere}" /></p>
-        <p>Vendeur:<c:out value="${articleToDisplay.nomVendeur}" /> <c:out value="${articleToDisplay.prenomVendeur}" /></p>
+		  <h2><c:out value="${article.nom}" /></h2>
+        <p>Prix initial: ${article.prix_initial}" /> €</p>
+        <p>Prix de vente:<c:out value="${article.prix_vente}" /> €</p>
+        <p>Date de fin d'enchère: <c:out value="${article.fin_enchere}" /></p>
+        <p>Vendeur:<c:out value="${article.nomVendeur}" /> <c:out value="${article.prenomVendeur}" /></p>
 	</div>
 </body>
 </html>
