@@ -2,8 +2,6 @@ package fr.eni.enchere.ihm;
 
 import java.io.IOException;
 
-
-
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -12,21 +10,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import fr.eni.enchere.bll.ArticleManager;
-import fr.eni.enchere.bll.ArticleManagerImpl;
 import fr.eni.enchere.bo.Article;
-
 
 @WebServlet("/IndexServlet")
 public class IndexServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private ArticleManager articleManager = ArticleManagerImpl.getInstance();
-
-
+	private ArticleManager articleManager = ArticleManager.getInstance();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-	
+
 		List<Article> listeArticles = articleManager.getAllArticlesWithUserInfo();
 		request.setAttribute("listeArticles", listeArticles);
 

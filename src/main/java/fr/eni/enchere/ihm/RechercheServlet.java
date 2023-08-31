@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bo.Article;
 
 /**
@@ -27,10 +28,10 @@ public class RechercheServlet extends HttpServlet {
 		
 
         // TODO Appeler la couche de traitement métier
-        List<Article> resultatsRecherche = articleManager.rechercher(motCle, categorie);
+        //List<Article> resultatsRecherche = ArticleManager.rechercher(motCle, categorie);
 
         // TODO Passer les résultats à la vue (JSP)
-        request.setAttribute("resultats", resultatsRecherche);
+        //request.setAttribute("resultats", resultatsRecherche);
         request.getRequestDispatcher("resultats.jsp").forward(request, response);
     }
 

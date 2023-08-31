@@ -11,6 +11,7 @@ public interface ArticleDAO   {
 	public Article getArticleByNo(int no_article);
 	public List<Article> getListArticle ();
 	Article getArticleById(int no_article);
+	public List<Article> getAllArticlesWithUserInfo();
 
 
 }
