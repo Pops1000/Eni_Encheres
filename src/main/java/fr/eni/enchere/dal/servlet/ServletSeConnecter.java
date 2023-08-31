@@ -1,6 +1,7 @@
 package fr.eni.enchere.dal.servlet;
 
 import java.io.IOException;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -31,7 +32,6 @@ public class ServletSeConnecter extends HttpServlet {
 			throws ServletException, IOException {
 	
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
