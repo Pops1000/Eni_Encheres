@@ -22,8 +22,7 @@ public class ServletDisconectUser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		UtilisateurManager.getInstance().disconnectUser(request.getSession());
-		request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-
+		response.sendRedirect("IndexServlet");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)

@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>index</title>
 
@@ -36,45 +37,64 @@
 			</c:when>
 			<c:otherwise>
 				<h2>Bienvenue, ${sessionScope.pseudo}!</h2>
-				<!-- Autres éléments à afficher pour un utilisateur connecté -->
+				<!-- Autres Ã©lÃ©ments Ã  afficher pour un utilisateur connectÃ© -->
 				<form action="ServletCreateArticle" method="GET">
-					<button type="submit" class="btn btn-success">Enchères</button>
+					<button type="submit" class="btn btn-success">EnchÃ¨res</button>
 				</form>
 				<form action="ServletCreateArticle" method="GET">
-					<button type="submit" class="btn btn-success">Vendre un article</button>
+					<button type="submit" class="btn btn-success">Vendre un
+						article</button>
 				</form>
 				<form action="ServletMonProfil" method="GET">
 					<button type="submit" class="btn btn-success">Mon profil</button>
 				</form>
-				
+
 				<form action="ServletDisconectUser" method="GET">
-					<button type="submit" class="btn btn-success">Se déconnecter</button>
+					<button type="submit" class="btn btn-success">Se
+						dÃ©connecter</button>
 				</form>
-				
+
+
 			</c:otherwise>
 		</c:choose>
 
+
 	</nav>
+	<div>
+		<h2>Articles</h2>
+		<ul>
+			<%-- Supposons que vous ayez une liste d'articles dans la session --%>
+			<c:forEach var="article" items="${listeArticles}" varStatus="status">
+				<c:if test="${status.index < 6}">
+				
+					<jsp:include page="affichageArticle.jsp">
+						<jsp:param name="no_article" value="${article.no_article}" />
+						
+					</jsp:include>
+				</c:if>
+			</c:forEach>
+		</ul>
+	</div>
 	<section class="container mt-5">
 		<div>
-			<p>L'association "Les objets sont nos amis" aspire à créer une
+			<p>L'association "Les objets sont nos amis" aspire Ã  crÃ©er une
 				plateforme web novatrice permettant la transmission d'objets de
-				seconde main, sans qu'il y ait de transactions financières
-				impliquées. La valeur des articles sera définie selon un système
-				d'enchères basé sur une unité de points. Ces points seront gagnés
-				par la vente d'objets et pourront ensuite être utilisés pour
-				acquérir d'autres articles.</p>
+				seconde main, sans qu'il y ait de transactions financiÃ¨res
+				impliquÃ©es. La valeur des articles sera dÃ©finie selon un systÃ¨me
+				d'enchÃ¨res basÃ© sur une unitÃ© de points. Ces points seront gagnÃ©s
+				par la vente d'objets et pourront ensuite Ãªtre utilisÃ©s pour
+				acquÃ©rir d'autres articles.</p>
 		</div>
 
-	
-			<p></p>
+
+		<p></p>
 	</section>
 
 
 
 	<footer>
 		<section class="container mt-5">
-			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits réservés.</p>
+			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits rÃ©servÃ©s.</p>
 		</section>
 	</footer>
 </body>
