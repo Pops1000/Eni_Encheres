@@ -1,10 +1,10 @@
-CREATE TABLE CATEGORIES (
+CREATE TABLE categories (
     no_categorie INT AUTO_INCREMENT NOT NULL,
     libelle VARCHAR(30) NOT NULL,
     PRIMARY KEY (no_categorie)
 );
 
-CREATE TABLE ENCHERES (
+CREATE TABLE encheres (
     no_utilisateur INT NOT NULL,
     no_article INT NOT NULL,
     date_enchere DATETIME NOT NULL,
@@ -12,7 +12,7 @@ CREATE TABLE ENCHERES (
     PRIMARY KEY (no_utilisateur, no_article)
 );
 
-CREATE TABLE RETRAITS (
+CREATE TABLE retraits (
     no_article INT NOT NULL,
     rue VARCHAR(30) NOT NULL,
     code_postal VARCHAR(15) NOT NULL,
@@ -20,7 +20,7 @@ CREATE TABLE RETRAITS (
     PRIMARY KEY (no_article)
 );
 
-CREATE TABLE UTILISATEURS (
+CREATE TABLE utilisateurs (
     no_utilisateur INT AUTO_INCREMENT NOT NULL,
     pseudo VARCHAR(30) NOT NULL,
     nom VARCHAR(30) NOT NULL,
@@ -36,7 +36,7 @@ CREATE TABLE UTILISATEURS (
     PRIMARY KEY (no_utilisateur)
 );
 
-CREATE TABLE ARTICLES_VENDUS (
+CREATE TABLE articles_vendus (
     no_article INT AUTO_INCREMENT NOT NULL,
     nom_article VARCHAR(30) NOT NULL,
     description VARCHAR(300) NOT NULL,
@@ -47,23 +47,23 @@ CREATE TABLE ARTICLES_VENDUS (
     no_utilisateur INT NOT NULL,
     no_categorie INT NOT NULL,
     PRIMARY KEY (no_article),
-    FOREIGN KEY (no_utilisateur) REFERENCES UTILISATEURS(no_utilisateur) ON DELETE NO ACTION ON UPDATE NO ACTION,
-    FOREIGN KEY (no_categorie) REFERENCES CATEGORIES(no_categorie) ON DELETE NO ACTION ON UPDATE NO ACTION
+    FOREIGN KEY (no_utilisateur) REFERENCES utilisateurs(no_utilisateur) ON DELETE NO ACTION ON UPDATE NO ACTION,
+    FOREIGN KEY (no_categorie) REFERENCES categories(no_categorie) ON DELETE NO ACTION ON UPDATE NO ACTION
 );
 
-ALTER TABLE ENCHERES
+ALTER TABLE encheres
     ADD CONSTRAINT encheres_articles_vendus_fk FOREIGN KEY (no_article)
     REFERENCES ARTICLES_VENDUS(no_article) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE RETRAITS
+ALTER TABLE retraits
     ADD CONSTRAINT retraits_articles_vendus_fk FOREIGN KEY (no_article)
-    REFERENCES ARTICLES_VENDUS(no_article) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    REFERENCES articles_vendus(no_article) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
-ALTER TABLE ARTICLES_VENDUS
+ALTER TABLE articles_vendus
     ADD CONSTRAINT ventes_utilisateur_fk FOREIGN KEY (no_utilisateur)
-    REFERENCES UTILISATEURS(no_utilisateur) ON DELETE NO ACTION ON UPDATE NO ACTION;
+    REFERENCES utilisateurs(no_utilisateur) ON DELETE NO ACTION ON UPDATE NO ACTION;
     
-INSERT INTO CATEGORIES (libelle) VALUES
+INSERT INTO categories (libelle) VALUES
     ('Informatique'),
     ('Ameublement'),
     ('Vêtement'),
@@ -82,7 +82,7 @@ VALUES
     ('Imprimante multifonction', 'Une imprimante pour tous vos besoins d\'impression.', '2023-09-09', '2023-09-18', 120.00, 2, 1),
     ('Chaise pliante', 'Une chaise pliable idéale pour les activités extérieures.', '2023-09-10', '2023-09-19', 15.00, 1, 2);
     
-INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES
+INSERT INTO utilisateurs (pseudo, nom, prenom, email, telephone, rue, code_postal, ville, mot_de_passe, credit, administrateur) VALUES
     ('john_doe', 'Doe', 'John', 'john@example.com', '1234567890', '123 Main St', '12345', 'Cityville', 'motdepasse1', 100, 0),
     ('jane_smith', 'Smith', 'Jane', 'jane@example.com', '9876543210', '456 Elm St', '54321', 'Townsville', 'motdepasse2', 150, 0),
     ('alex_jones', 'Jones', 'Alex', 'alex@example.com', '5551234567', '789 Oak St', '67890', 'Villagetown', 'motdepasse3', 200, 1),
@@ -93,7 +93,7 @@ INSERT INTO UTILISATEURS (pseudo, nom, prenom, email, telephone, rue, code_posta
     ('lisa_jackson', 'Jackson', 'Lisa', 'lisa@example.com', '3334445555', '555 Walnut St', '43210', 'Villageville', 'motdepasse8', 175, 0),
     ('chris_smith', 'Smith', 'Chris', 'chris@example.com', '6667778888', '666 Pine St', '24680', 'Hamletburg', 'motdepasse9', 200, 0),
     ('jessica_davis', 'Davis', 'Jessica', 'jessica@example.com', '9990001111', '777 Oak St', '13579', 'Countryville', 'motdepasse10', 120, 0);
-    INSERT INTO RETRAITS (no_article, rue, code_postal, ville)
+    INSERT INTO retraits (no_article, rue, code_postal, ville)
 VALUES
     (1, '123 Rue A', '75001', 'Paris'),
     (2, '456 Rue B', '75002', 'Paris'),
