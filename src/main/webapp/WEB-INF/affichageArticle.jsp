@@ -21,7 +21,7 @@
 
 	<div>
 		  <h2><c:out value="${articleToDisplay.nom}" /></h2>
-        <p>Prix initial: <c:out value="${articleToDisplay.prix_initial}" /> €</p>
+        <p>Prix initial: ${articleToDisplay.prix_initial}" /> €</p>
         <p>Prix de vente:<c:out value="${articleToDisplay.prix_vente}" /> €</p>
         <p>Date de fin d'enchère: <c:out value="${articleToDisplay.fin_enchere}" /></p>
         <p>Vendeur:<c:out value="${articleToDisplay.nomVendeur}" /> <c:out value="${articleToDisplay.prenomVendeur}" /></p>

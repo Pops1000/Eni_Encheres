@@ -21,7 +21,7 @@ public class ServletAfficherArticle extends HttpServlet {
 			throws ServletException, IOException {
 
 		List<Article> listArticle = null;
-		listArticle = articleManager.getAllArticle();
+		listArticle = articleManager.getAllArticlesWithUserInfo();
 
 		request.setAttribute("listArticle", listArticle);
 		request.getRequestDispatcher("/WEB-INF/afficherArticle.jsp").forward(request, response);

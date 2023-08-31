@@ -62,7 +62,7 @@ public class ServletModify extends HttpServlet {
 			session.setAttribute("codePostal", codePostal);
 			session.setAttribute("ville", ville);
 			session.setAttribute("mdp", mdp);
-
+			System.out.println(session.getAttribute(nom));
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
