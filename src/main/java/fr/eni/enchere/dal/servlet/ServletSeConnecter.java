@@ -29,20 +29,19 @@ public class ServletSeConnecter extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String login = request.getParameter("id");
 		String password = request.getParameter("password");
-		
-		
-		
+
 		try {
 			Utilisateur connectedUser = UtilisateurManager.getInstance().seConnecter(login, password);
-			if(connectedUser != null) {
+			if (connectedUser != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("userId", connectedUser.getNo_utilisateur());
 				session.setAttribute("pseudo", connectedUser.getPseudo());
@@ -54,24 +53,20 @@ public class ServletSeConnecter extends HttpServlet {
 				session.setAttribute("codePostal", connectedUser.getCodePostal());
 				session.setAttribute("ville", connectedUser.getVille());
 				session.setAttribute("mdp", connectedUser.getMdp());
-				
-				  ArticleManager articleManager = ArticleManager.getInstance();
-				    List<Article> listeArticles = articleManager.getAllArticles();
-				    session.setAttribute("listeArticles", listeArticles);
-
 
 			
+			
+				
 				request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-				
+
 			}
-			
+
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			
-			;
-	}
 
+			;
+		}
 
 	}
 

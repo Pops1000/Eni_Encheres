@@ -12,6 +12,10 @@ public class Article {
 	private int no_utilisateur;
 	private int no_categorie;
 	
+	
+	 private String nomVendeur;
+	 private String prenomVendeur;
+	
 	public Article () {
 		
 	}
@@ -113,6 +117,22 @@ public class Article {
 
 	public void setNo_categorie(int no_categorie) {
 		this.no_categorie = no_categorie;
+	}
+
+	public String getNomVendeur() {
+		return nomVendeur;
+	}
+
+	public void setNomVendeur(String nomVendeur) {
+		this.nomVendeur = nomVendeur;
+	}
+
+	public String getPrenomVendeur() {
+		return prenomVendeur;
+	}
+
+	public void setPrenomVendeur(String prenomVendeur) {
+		this.prenomVendeur = prenomVendeur;
 	}
 }
 
