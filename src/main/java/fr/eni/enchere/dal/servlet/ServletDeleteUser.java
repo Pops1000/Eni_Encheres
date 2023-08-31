@@ -3,6 +3,7 @@ package fr.eni.enchere.dal.servlet;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,10 +18,13 @@ import fr.eni.enchere.bll.UtilisateurManager;
 public class ServletDeleteUser extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+     
     public ServletDeleteUser() {
         super();
-
+       
     }
+
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		int userId = (int) session.getAttribute("userId");
@@ -34,6 +38,7 @@ public class ServletDeleteUser extends HttpServlet {
 				e.printStackTrace();
 			}
 	}
+
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);

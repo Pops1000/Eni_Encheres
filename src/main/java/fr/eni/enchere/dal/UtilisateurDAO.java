@@ -9,6 +9,7 @@ public interface UtilisateurDAO   {
 	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, String mdp);
 	public void deleteUser(int user_idr);
+
 	
 //	public Boolean checkPasswordMatch(String pwd, String pwd_confirm);
 	

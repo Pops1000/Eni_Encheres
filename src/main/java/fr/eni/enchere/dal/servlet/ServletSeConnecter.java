@@ -1,9 +1,7 @@
 package fr.eni.enchere.dal.servlet;
 
 import java.io.IOException;
-
-
-
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eni.enchere.BusinessException;
+import fr.eni.enchere.bll.ArticleManager;
 import fr.eni.enchere.bll.UtilisateurManager;
+import fr.eni.enchere.bo.Article;
 import fr.eni.enchere.bo.Utilisateur;
 
 /**
@@ -29,22 +29,22 @@ public class ServletSeConnecter extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+	
 		request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-		
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String login = request.getParameter("id");
 		String password = request.getParameter("password");
-		
-		
-		
+
 		try {
 			Utilisateur connectedUser = UtilisateurManager.getInstance().seConnecter(login, password);
-			if(connectedUser != null) {
+			if (connectedUser != null) {
 				HttpSession session = request.getSession();
 				session.setAttribute("noUtilisateur", connectedUser.getNo_utilisateur());
+				session.setAttribute("userId", connectedUser.getNo_utilisateur());
 				session.setAttribute("pseudo", connectedUser.getPseudo());
 				session.setAttribute("nom", connectedUser.getNom());
 				session.setAttribute("prenom", connectedUser.getPrenom());
@@ -53,17 +53,21 @@ public class ServletSeConnecter extends HttpServlet {
 				session.setAttribute("rue", connectedUser.getRue());
 				session.setAttribute("codePostal", connectedUser.getCodePostal());
 				session.setAttribute("ville", connectedUser.getVille());
-				
-				System.out.println();
+				session.setAttribute("mdp", connectedUser.getMdp());
+
 			
+				
 				request.getRequestDispatcher("/WEB-INF/index.jsp").forward(request, response);
-				
+
 			}
-			
+
 		} catch (BusinessException e) {
 			request.setAttribute("listeCodesErreur", e.getListeCodesErreur());
 			request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-			}
+
 		}
+
+	}
+
 
 }

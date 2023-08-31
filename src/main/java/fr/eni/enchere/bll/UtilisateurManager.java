@@ -2,8 +2,7 @@ package fr.eni.enchere.bll;
 
 import fr.eni.enchere.BusinessException;
 
-
-
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import fr.eni.enchere.bo.Utilisateur;
 import fr.eni.enchere.dal.DAOFactory;
@@ -54,6 +53,7 @@ public class UtilisateurManager {
 	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, String mdp) throws BusinessException {
 		utilisateurDAO.updateUser(userId, pseudo, nom, prenom, email, tel, rue, codePostal,ville, mdp);
+
 		
 	}
 
@@ -72,4 +72,5 @@ public class UtilisateurManager {
 		}
 
 	}
+
 }

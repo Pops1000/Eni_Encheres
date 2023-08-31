@@ -31,7 +31,7 @@
                 		<input type="text" value="${sessionScope.nom}" class="form-control" id="nom" name="nom" required>
             		</div>
             		<div class="mb-3">
-                		<label for="prenom" class="form-label">Prénom</label>
+                		<label for="prenom" class="form-label">PrÃ©nom</label>
                 		<input type="text"value="${sessionScope.prenom}" class="form-control" id="prenom" name="prenom" required>
             		</div>
             		<div class="mb-3">
@@ -39,7 +39,7 @@
                 		<input type="email" value="${sessionScope.email}"class="form-control" id="email" name="email" required>
             		</div>
             		<div class="mb-3">
-                		<label for="tel" class="form-label">Téléphone</label>
+                		<label for="tel" class="form-label">TÃ©lÃ©phone</label>
                 		<input type="tel" value="${sessionScope.tel}" class="form-control" id="tel" name="tel">
             		</div>
             		<div class="mb-3">
@@ -67,7 +67,7 @@
                 		<input type="password" class="form-control" id="confirmationMotDePasse" name="confirm_pwd" >
             		</div>
             		<button type="submit" class="btn btn-success">Enregister</button>
-            		<a href="IndexServlet" class="btn btn-secondary">Supprimer mon compte</a>
+            		<form action="ServletDeleteUser" method="GET"> <button type="submit" class="btn btn-danger" action="delete" value="ServletDeleteUser">Supprimer le compte</button></form>
         		</form>
     		</div>
     		<a href="<%=request.getContextPath()%>/IndexServlet" type="submit" class="btn btn-success"> Annuler </a>
@@ -75,8 +75,9 @@
 	</div>
 	<footer>
 		<section class="container mt-5">
-			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits réservés.</p>
+			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits rÃ©servÃ©s.</p>
 		</section>
 	</footer>
+
 </body>
 </html>

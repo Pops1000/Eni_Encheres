@@ -11,8 +11,9 @@ public class Article {
 	private int prix_vente;
 	private int no_utilisateur;
 	private int no_categorie;
-	
-	private Utilisateur utilisateur;
+  private Utilisateur utilisateur;
+  private String nomVendeur;
+  private String prenomVendeur;
 	
 	public Article () {
 	}
@@ -133,6 +134,7 @@ public class Article {
 		this.no_categorie = no_categorie;
 	}
 
+
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	    }
@@ -155,6 +157,22 @@ public class Article {
                ", utilisateur=" + utilisateur +
                '}';
     }
+
+	public String getNomVendeur() {
+		return nomVendeur;
+	}
+
+	public void setNomVendeur(String nomVendeur) {
+		this.nomVendeur = nomVendeur;
+	}
+
+	public String getPrenomVendeur() {
+		return prenomVendeur;
+	}
+
+	public void setPrenomVendeur(String prenomVendeur) {
+		this.prenomVendeur = prenomVendeur;
+	}
 
 }
 

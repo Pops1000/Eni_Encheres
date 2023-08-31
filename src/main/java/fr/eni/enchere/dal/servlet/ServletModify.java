@@ -1,7 +1,6 @@
 package fr.eni.enchere.dal.servlet;
 
 import java.io.IOException;
-import fr.eni.enchere.bo.Utilisateur;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,6 +33,7 @@ public class ServletModify extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		
+
 		int noUtilisateur = (int) session.getAttribute("noUtilisateur");
 		String pseudo = request.getParameter("pseudo");
 		String nom = request.getParameter("nom");
@@ -43,6 +43,7 @@ public class ServletModify extends HttpServlet {
 		String rue = request.getParameter("rue");
 		String codePostal = request.getParameter("codePostal");
 		String ville = request.getParameter("ville");
+
 		String mdp = request.getParameter("mdp");
         String new_pwd = request.getParameter("new_pwd");
         String confirm_pwd = request.getParameter("confirm_pwd");
@@ -50,6 +51,7 @@ public class ServletModify extends HttpServlet {
         
 		try {
 			UtilisateurManager.getInstance().updateUser(noUtilisateur, pseudo, nom, prenom, email, tel, rue, codePostal, ville, mdp);
+
 			
 			session.setAttribute("pseudo", pseudo);
 			session.setAttribute("nom", nom);
@@ -60,6 +62,7 @@ public class ServletModify extends HttpServlet {
 			session.setAttribute("codePostal", codePostal);
 			session.setAttribute("ville", ville);
 			session.setAttribute("mdp", mdp);
+
 		} catch (BusinessException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

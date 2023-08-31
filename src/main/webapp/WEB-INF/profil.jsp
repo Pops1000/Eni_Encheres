@@ -22,9 +22,9 @@
 				<h2>Mon Profil</h2>
    					<p><strong>Pseudo:</strong> ${sessionScope.pseudo}</p>
     				<p><strong>Nom:</strong> ${sessionScope.nom}</p>
-    				<p><strong>Prénom:</strong> ${sessionScope.prenom}</p>
+    				<p><strong>PrÃ©nom:</strong> ${sessionScope.prenom}</p>
     				<p><strong>Email:</strong> ${sessionScope.email}</p>
-    				<p><strong>Téléphone:</strong> ${sessionScope.tel}</p>
+    				<p><strong>TÃ©lÃ©phone:</strong> ${sessionScope.tel}</p>
     				<p><strong>Rue:</strong> ${sessionScope.rue}</p>
     				<p><strong>Code Postal:</strong> ${sessionScope.codePostal}</p>
     				<p><strong>Ville:</strong> ${sessionScope.ville}</p>
@@ -35,7 +35,7 @@
     </div>
     <footer>
 		<section class="container mt-5">
-			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits réservés.</p>
+			<p>&copy; 2023 Oscar, Peio, Romain, Erwan. Tous droits rÃ©servÃ©s.</p>
 		</section>
 	</footer>
 </body>

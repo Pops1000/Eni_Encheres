@@ -15,8 +15,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	private static final String INSERT_USER = "INSERT into utilisateurs (pseudo,nom,prenom,email,telephone,rue,code_postal,ville,mot_de_passe,credit, administrateur) VALUES (?,?,?,?,?,?,?,?,?,?,?);";
 	private static final String UPDATE_USER = "UPDATE utilisateurs SET pseudo = ?,nom = ?,prenom = ?,email = ?,telephone = ?,rue = ?,code_postal = ?,ville = ?,mot_de_passe =? WHERE no_utilisateur = ? ";
 	private static final String DELETE_USER = "DELETE FROM utilisateurs WHERE no_utilisateur =?";
-	
-	
+
 	@Override
 	public Utilisateur getUtilisateurByPseudo(String pseudo) {
 		Utilisateur user = null;
@@ -73,7 +72,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void createUser(Utilisateur user) {
 
 		try (Connection con = ConnectionProvider.getConnection();
-			PreparedStatement pstmt = con.prepareStatement(INSERT_USER)) {
+				PreparedStatement pstmt = con.prepareStatement(INSERT_USER)) {
 			pstmt.setString(1, user.getPseudo());
 			pstmt.setString(2, user.getNom());
 			pstmt.setString(3, user.getPrenom());
@@ -105,6 +104,7 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	@Override
 	public void updateUser(int userId, String pseudo, String nom, String prenom, String email, String tel, String rue,
 			String codePostal, String ville, String mdp) {
+
 		try (Connection con = ConnectionProvider.getConnection()){
 			con.setAutoCommit(false);
 			try {
@@ -145,11 +145,10 @@ public class UtilisateurDAOJdbcImpl implements UtilisateurDAO {
 	public void deleteUser(int user_id) {
 		try (Connection con = ConnectionProvider.getConnection();
 				PreparedStatement pstmt = con.prepareStatement(DELETE_USER)) {
-				pstmt.setInt(1, user_id);
+			pstmt.setInt(1, user_id);
 
-				pstmt.executeUpdate();
-				System.out.println("User deleted with success");
-
+			pstmt.executeUpdate();
+			System.out.println("User deleted with success");
 			} catch (SQLException e) {
 				// TODO : Gestion de l'exception !
 				e.printStackTrace();

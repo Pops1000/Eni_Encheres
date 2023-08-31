@@ -8,9 +8,8 @@ import fr.eni.enchere.bo.Article;
 public interface ArticleDAO   {
 	
 	public void createArticle(Article article);
-	
 	public Article getArticleByNo(int no_article);
-	
 	public List<Article> getListArticle ();
+
 
 }

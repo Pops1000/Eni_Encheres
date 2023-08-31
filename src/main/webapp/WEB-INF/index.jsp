@@ -1,8 +1,14 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
+
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>index</title>
@@ -31,14 +37,29 @@
 			<c:otherwise>
 				<h2>Bienvenue, ${sessionScope.pseudo}!</h2>
 				<!-- Autres éléments à afficher pour un utilisateur connecté -->
+
 				<jsp:include page="navbarConnecter.jsp"></jsp:include>
 			</c:otherwise>
 		</c:choose>
 	</div>
+	<div>
+		<h2>Articles</h2>
+		<ul>
+			<%-- Supposons que vous ayez une liste d'articles dans la session --%>
+			<c:forEach var="article" items="${listeArticles}" varStatus="status">
+				<c:if test="${status.index < 6}">
+				
+					<jsp:include page="affichageArticle.jsp">
+						<jsp:param name="no_article" value="${article.no_article}" />
+						
+					</jsp:include>
+				</c:if>
+			</c:forEach>
+		</ul>
+	</div>
 	<section class="container mt-5">
-		<div class="row">
-        	<div class="col-md-6">
-				<p>L'association "Les objets sont nos amis" aspire à créer une
+		<div>
+			<p>L'association "Les objets sont nos amis" aspire à créer une
 				plateforme web novatrice permettant la transmission d'objets de
 				seconde main, sans qu'il y ait de transactions financières
 				impliquées. La valeur des articles sera définie selon un système

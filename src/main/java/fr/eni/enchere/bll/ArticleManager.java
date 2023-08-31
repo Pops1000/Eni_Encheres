@@ -1,5 +1,6 @@
 package fr.eni.enchere.bll;
 
+
 import java.util.List;
 
 import fr.eni.enchere.BusinessException;
@@ -10,9 +11,6 @@ import fr.eni.enchere.dal.DAOFactory;
 public interface ArticleManager {
 	
 	public void createArticle(Article article) throws BusinessException;
-	
 	public void getArticleByNo(int no_article)throws BusinessException ;
-	
 	public List<Article> getAllArticle();
-	
-}
+};
