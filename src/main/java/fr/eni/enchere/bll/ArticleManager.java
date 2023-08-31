@@ -1,3 +1,4 @@
+
 package fr.eni.enchere.bll;
 
 
@@ -13,4 +14,8 @@ public interface ArticleManager {
 	public void createArticle(Article article) throws BusinessException;
 	public void getArticleByNo(int no_article)throws BusinessException ;
 	public List<Article> getAllArticle();
+	public ArticleManagerImpl getInstance();
+	public List<Article> getAllArticlesWithUserInfo();
+	public Article getArticleById(int articleIdToDisplay);
+	
 };

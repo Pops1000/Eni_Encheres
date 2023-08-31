@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import fr.eni.enchere.bo.Article;
+
 /**
  * Servlet implementation class RechercheServlet
  */
@@ -25,7 +27,7 @@ public class RechercheServlet extends HttpServlet {
 		
 
         // TODO Appeler la couche de traitement métier
-        List<ResultatRecherche> resultatsRecherche = articleManager.rechercher(motCle, categorie);
+        List<Article> resultatsRecherche = articleManager.rechercher(motCle, categorie);
 
         // TODO Passer les résultats à la vue (JSP)
         request.setAttribute("resultats", resultatsRecherche);

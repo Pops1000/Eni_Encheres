@@ -21,18 +21,14 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 			+ "(nom_article,description,date_debut_encheres,date_fin_encheres,"
 			+ "prix_initial,no_utilisateur,no_categorie) "
 			+ "VALUES (?,?,?,?,?,?,?);";
+	
 	private static final String SELECT_ALL_ARTICLE = "SELECT no_article, nom_article, "
 			+ "description, date_debut_encheres, date_fin_encheres, prix_initial, prix_vente,"
 			+ " no_utilisateur, no_categorie ;";
 	
-  private static final String SELECT_ARTICLE_AND_USER = "SELECT a.no_article,a.nom_article,"
-			+ " a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,"
- 			+ " a.prix_vente, a.no_utilisateur, a.no_categorie, u.no_utilisateur, u.pseudo, u.rue, u.code_postal, u.ville FROM articles_vendus a "
-			+ "INNER JOIN utilisateurs u ON a.no_utilisateur = u.no_utilisateur;";
-
 	private List<Article> articles = new ArrayList<>();
 
-	private static final String SELECT_ARTICLE_AND_USER="SELECT a.no_article,a.nom_article, "
+	private static final String SELECT_ALL_ARTICLES_WITH_USERINFO="SELECT a.no_article,a.nom_article, "
 			+ "a.description, a.date_debut_encheres, a.date_fin_encheres, a.prix_initial,"
 			+ " a.prix_vente, a.no_utilisateur, a.no_categorie, u.pseudo, u.rue, u.code_postal, u.ville FROM articles_vendus a "
 			+ "INNER JOIN utilisateurs u ON a.no_utilisateur = u.no_utilisateur;";
@@ -79,7 +75,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 		List<Article> resultat = new ArrayList <>();
 		
 		try (Connection con = ConnectionProvider.getConnection()) {
-			PreparedStatement stmt = con.prepareStatement(SELECT_ARTICLE_AND_USER);
+			PreparedStatement stmt = con.prepareStatement(SELECT_ALL_ARTICLES_WITH_USERINFO);
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				Article article = new Article();
@@ -115,7 +111,7 @@ public class ArticleDAOJdbcImpl implements ArticleDAO{
 	public List<Article> getAllArticlesWithUserInfo() {
 		List<Article> articles = new ArrayList<>();
 		try (Connection connection = ConnectionProvider.getConnection();
-				PreparedStatement pstmt = connection.prepareStatement(SELECT_ARTICLE_AND_USER);
+				PreparedStatement pstmt = connection.prepareStatement(SELECT_ALL_ARTICLES_WITH_USERINFO);
 				ResultSet resultSet = pstmt.executeQuery()) {
 			while (resultSet.next()) {
 				Article article = new Article();

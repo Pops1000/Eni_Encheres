@@ -13,7 +13,7 @@ public class ArticleManagerImpl implements ArticleManager {
 
 	private ArticleDAO articleDAO = DAOFactory.getArticleDAO();
 	
-	public static ArticleManagerImpl getInstance() {
+	public ArticleManagerImpl getInstance() {
 		if (instance == null) {
 			instance = new ArticleManagerImpl();
 		}
@@ -34,6 +34,16 @@ public class ArticleManagerImpl implements ArticleManager {
 	@Override
 	public List<Article> getAllArticle() {
 		return articleDAO.getListArticle();
+	}
+
+	@Override
+	public List<Article> getAllArticlesWithUserInfo() {
+		return articleDAO.getAllArticlesWithUserInfo();
+	}
+
+	@Override
+	public Article getArticleById(int no_article) {
+		return articleDAO.getArticleByNo(no_article);
 	}
 
 }
